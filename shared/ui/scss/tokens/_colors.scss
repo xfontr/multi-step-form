@@ -1,0 +1,18 @@
+@use "sass:color";
+
+$colors-primary: black;
+$colors-primary-light: color.adjust($colors-primary, $lightness: 40%);
+$colors-primary-very-light: color.adjust($colors-primary, $lightness: 70%);
+
+$colors-primary-alpha: rgba($colors-primary, 0.7);
+$colors-primary-alpha-light: rgba($colors-primary, 0.5);
+$colors-primary-dim: color.adjust($colors-primary, $lightness: 95%);
+
+$colors-secondary: #ffffff;
+$colors-secondary-light: color.adjust($colors-secondary, $lightness: 20%);
+$colors-secondary-very-light: color.adjust($colors-secondary, $lightness: 30%);
+
+$colors-secondary-alpha: rgba($colors-secondary, 0.7);
+$colors-secondary-alpha-light: rgba($colors-secondary, 0.5);
+
+$colors-contrast: red;

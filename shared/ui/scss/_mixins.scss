@@ -1,0 +1,18 @@
+@use "tokens/breakpoints" as *;
+@use "tokens/fonts" as *;
+
+@mixin font-style(
+    $weight: $fonts-regular,
+    $line-height: $fonts-line-height-md
+) {
+    font-weight: $weight;
+    line-height: $line-height;
+}
+
+@mixin font-size($mobile, $desktop, $weight: $fonts-regular) {
+    font-size: $mobile;
+
+    @media (min-width: $breakpoints-m) {
+        font-size: $desktop;
+    }
+}
