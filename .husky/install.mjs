@@ -1,6 +1,9 @@
-// Skip Husky install in production and CI
+import process from "node:process";
+
 if (process.env.NODE_ENV === "production" || process.env.CI === "true") {
     process.exit(0);
 }
 
-(await import("husky")).default;
+void (async () => {
+    await import("husky").default;
+})();
