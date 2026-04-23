@@ -1,0 +1,30 @@
+{
+    "name": "dogfy-diet-challenge",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "prepare": "node .husky/install.mjs",
+        "lint": "eslint .",
+        "format": "prettier --check .",
+        "test": "true"
+    },
+    "dependencies": {
+        "@nuxt/eslint": "^1.15.2",
+        "nuxt": "^4.4.2",
+        "vue": "^3.5.32",
+        "vue-router": "^5.0.4"
+    },
+    "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
+    "devDependencies": {
+        "eslint": "^10.2.1",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-prettier": "^5.5.5",
+        "husky": "^9.1.7",
+        "prettier": "^3.8.3"
+    }
+}
