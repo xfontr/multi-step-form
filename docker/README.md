@@ -1,14 +1,14 @@
 # Docker
 
-### Quick start
+## Quick start
 
 Run `$ make init`. Make sure you have Docker CLI installed, alongside with Docker's daemon.
 
-### Usage
+## Usage
 
 After the init, just make sure you keep refreshing the files, image and container by running `$ make refresh`.
 
-# Setup
+## Setup
 
 ```bash
 $ make init

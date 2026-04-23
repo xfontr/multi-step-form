@@ -8,4 +8,6 @@ export default antfu({
         quotes: "double",
         semi: true,
     },
+    jsonc: false,
+    yaml: false,
 });
