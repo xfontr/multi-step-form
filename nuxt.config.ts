@@ -1,9 +1,17 @@
+import Aura from "@primeuix/themes/aura";
+
 export default defineNuxtConfig({
     compatibilityDate: "2025-07-15",
 
     devtools: { enabled: false },
 
-    modules: ["@nuxt/eslint", "@nuxt/test-utils/module", "@nuxtjs/i18n"],
+    modules: [
+        "@nuxt/eslint",
+        "@nuxt/test-utils/module",
+        "@nuxt/fonts",
+        "@nuxtjs/i18n",
+        "@primevue/nuxt-module",
+    ],
 
     i18n: {
         defaultLocale: "es",
@@ -14,4 +22,18 @@ export default defineNuxtConfig({
     },
 
     css: ["#shared/ui/scss/index.scss"],
+
+    primevue: {
+        options: {
+            theme: {
+                preset: Aura,
+            },
+        },
+    },
+
+    fonts: {
+        defaults: {
+            weights: [300, 600, 900],
+        },
+    },
 });

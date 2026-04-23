@@ -1,19 +1,9 @@
 <template>
-    <button
-        class="cta-button"
-        type="button"
-    >
+    <Button class="cta-button">
         <slot />
-    </button>
+    </Button>
 </template>
 
-<script lang="ts"></script>
-
-<style lang="scss">
-@use "#shared/ui/scss/index" as *;
-
-.cta-button {
-    cursor: pointer;
-    background-color: $colors-primary;
-}
-</style>
+<script lang="ts" setup>
+import { Button } from "primevue";
+</script>
