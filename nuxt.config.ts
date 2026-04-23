@@ -3,5 +3,5 @@ export default defineNuxtConfig({
 
     devtools: { enabled: false },
 
-    modules: ["@nuxt/eslint"],
+    modules: ["@nuxt/eslint", "@nuxt/test-utils/module"],
 });
