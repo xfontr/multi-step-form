@@ -3,16 +3,17 @@ import { Select } from "primevue";
 
 interface Props {
     placeholder: string;
+    options: string[];
+    editable?: boolean;
 }
 
-defineProps<Props>();
+withDefaults(defineProps<Props>(), { editable: true });
 </script>
 
 <template>
     <Select
-        editable
-        :options="['Food', 'drinks']"
-        option-label="name"
+        :editable
+        :options
         :placeholder
     />
 </template>

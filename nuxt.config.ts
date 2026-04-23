@@ -24,9 +24,17 @@ export default defineNuxtConfig({
     css: ["#shared/ui/scss/index.scss"],
 
     primevue: {
+        usePrimeVue: true,
         options: {
+            ripple: true,
+            inputVariant: "filled",
             theme: {
                 preset: Aura,
+                options: {
+                    prefix: "p",
+                    darkModeSelector: false,
+                    cssLayer: false,
+                },
             },
         },
     },

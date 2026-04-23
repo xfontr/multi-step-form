@@ -10,7 +10,10 @@ import Select from "#shared/ui/components/Select.vue";
             <p>{{ $t("landing.subHeading") }}</p>
 
             <form class="hero__form">
-                <Select :placeholder="$t('landing.inputPlaceholder')" />
+                <Select
+                    :options="['small-dog']"
+                    :placeholder="$t('landing.inputPlaceholder')"
+                />
 
                 <Button type="submit">
                     {{ $t("landing.cta") }}
