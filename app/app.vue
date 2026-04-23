@@ -1,6 +1,9 @@
 <template>
     <div>
-        <NuxtRouteAnnouncer />
-        <NuxtWelcome />
+        <CtaButton>{{ $t("landing.cta") }}</CtaButton>
     </div>
 </template>
+
+<script setup lang="ts">
+import CtaButton from "#shared/ui/components/CtaButton.vue";
+</script>
