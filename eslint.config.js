@@ -1,5 +1,11 @@
-// @ts-check
-import withNuxt from "./.nuxt/eslint.config.mjs";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import antfu from "@antfu/eslint-config";
 
-export default withNuxt([eslintPluginPrettierRecommended]);
+export default antfu({
+    vue: true,
+    typescript: true,
+    stylistic: {
+        indent: 4,
+        quotes: "double",
+        semi: true,
+    },
+});
