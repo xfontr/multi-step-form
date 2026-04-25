@@ -1,9 +1,9 @@
 import { useStepper } from "@vueuse/core";
 import { FLOW_INITIAL_STEPS } from "../configs/constants";
-import useFlowStore from "../stores/flow";
+import useStepStore from "../stores/steps";
 
-function useQueryStepper(steps: string[]) {
-    const flow = useFlowStore();
+function useQueryStepper(steps: Ref<string[]>) {
+    const stepsStore = useStepStore();
     const { goTo, goToNext, goToPrevious, index } = useStepper(steps);
 
     const route = useRoute();
@@ -22,13 +22,13 @@ function useQueryStepper(steps: string[]) {
 
     function next(): void {
         goToNext();
-        flow.up();
+        stepsStore.up();
         updateQuery(index.value);
     }
 
     function previous(): void {
         goToPrevious();
-        flow.down();
+        stepsStore.down();
         updateQuery(index.value);
     }
 
@@ -38,11 +38,11 @@ function useQueryStepper(steps: string[]) {
     ): boolean {
         if (query === undefined) return false;
 
-        const queryStep = steps[query];
+        const queryStep = steps.value[query];
 
         if (queryStep && query <= current) {
             goTo(queryStep);
-            flow.update(Number(query + FLOW_INITIAL_STEPS));
+            stepsStore.update(Number(query + FLOW_INITIAL_STEPS));
             return true;
         }
 
@@ -50,7 +50,7 @@ function useQueryStepper(steps: string[]) {
     }
 
     function trySetFlowStep(current: number): void {
-        const flowStep = steps[current];
+        const flowStep = steps.value[current];
         if (!flowStep) return;
 
         goTo(flowStep);
@@ -58,13 +58,13 @@ function useQueryStepper(steps: string[]) {
     }
 
     onMounted(() => {
-        const current = flow.index - FLOW_INITIAL_STEPS;
+        const current = stepsStore.index - FLOW_INITIAL_STEPS;
 
         const success = trySetQueryStep(initialStep.value, current);
         if (!success) trySetFlowStep(current);
     });
 
-    if (!flow.index) navigateTo("/");
+    if (!stepsStore.index) navigateTo("/");
 
     return {
         previous,

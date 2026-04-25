@@ -1,20 +1,20 @@
 import { createPinia, setActivePinia } from "pinia";
 import { beforeEach, describe, expect, it } from "vitest";
-import useFlowStore from "../stores/flow";
+import useStepsStore from "./steps";
 
-describe("useFlowStore", () => {
+describe("useStepsStore", () => {
     beforeEach(() => {
         setActivePinia(createPinia());
     });
 
     it("starts at index 0", () => {
-        const store = useFlowStore();
+        const store = useStepsStore();
 
         expect(store.index).toBe(0);
     });
 
     it("increments index with up()", () => {
-        const store = useFlowStore();
+        const store = useStepsStore();
 
         store.up();
         store.up();
@@ -23,7 +23,7 @@ describe("useFlowStore", () => {
     });
 
     it("decrements index with down()", () => {
-        const store = useFlowStore();
+        const store = useStepsStore();
 
         store.update(3);
         store.down();
@@ -32,7 +32,7 @@ describe("useFlowStore", () => {
     });
 
     it("does not go below 0 with down()", () => {
-        const store = useFlowStore();
+        const store = useStepsStore();
 
         store.down();
 
@@ -40,7 +40,7 @@ describe("useFlowStore", () => {
     });
 
     it("sets index with update()", () => {
-        const store = useFlowStore();
+        const store = useStepsStore();
 
         store.update(10);
 
@@ -48,7 +48,7 @@ describe("useFlowStore", () => {
     });
 
     it("combines operations correctly", () => {
-        const store = useFlowStore();
+        const store = useStepsStore();
 
         store.up(); // 1
         store.up(); // 2

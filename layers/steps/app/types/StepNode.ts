@@ -1,16 +1,16 @@
-import type AgeForm from "../components/forms/AgeForm.vue";
-import type GenderForm from "../components/forms/GenderForm.vue";
-import type PathologyForm from "../components/forms/PathologyForm.vue";
+import type BooleanStep from "../components/steps/BooleanStep.vue";
+import type NumberStep from "../components/steps/NumberStep.vue";
+import type TextStep from "../components/steps/TextStep.vue";
 
 export interface StepNode<
     Store extends { [K in keyof Store]: string | number | boolean | undefined },
 > {
     key: keyof Store;
     is: // string case
-        | typeof GenderForm
+        | typeof TextStep
         // number case
-        | typeof AgeForm
+        | typeof NumberStep
         // boolean case
-        | typeof PathologyForm;
+        | typeof BooleanStep;
     name?: string;
 }

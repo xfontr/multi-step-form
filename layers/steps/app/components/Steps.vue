@@ -12,7 +12,7 @@ import Button from "#layers/ui/app/components/Button.vue";
 import Stepper from "#layers/ui/app/components/Stepper.vue";
 
 interface Props {
-    nodes: StepNode<Store>[];
+    nodes: Required<StepNode<Store>>[];
     store: Store;
     index: number;
 }
@@ -20,12 +20,12 @@ interface Props {
 defineProps<Props>();
 
 const emit = defineEmits<{
-    submit: [key: keyof Store, value: unknown];
+    submit: [key: keyof Store, value: Store[keyof Store]];
     back: [];
 }>();
 
 function onSubmit<T extends keyof Store>(key: T, value: unknown) {
-    emit("submit", key, value);
+    emit("submit", key, value as Store[T]);
 }
 </script>
 
@@ -41,6 +41,7 @@ function onSubmit<T extends keyof Store>(key: T, value: unknown) {
         >
             <component
                 :is
+                :name="key as string"
                 :initial-value="store[key]"
                 @submit="(value: unknown) => onSubmit(key, value)"
             />
@@ -78,7 +79,7 @@ function onSubmit<T extends keyof Store>(key: T, value: unknown) {
     width: 50%;
 }
 
-:deep(.form) {
+:deep(.step) {
     min-height: 30vh;
 }
 </style>

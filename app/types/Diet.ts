@@ -1,5 +1,5 @@
 export interface Diet {
-    race: string;
+    breed: string;
     name: string;
     gender: string;
     age: number | undefined;

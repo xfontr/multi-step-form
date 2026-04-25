@@ -27,7 +27,7 @@ function onSubmit(): void {
 
 <template>
     <form
-        class="form"
+        class="step"
         @submit.prevent="onSubmit"
     >
         <slot
@@ -36,13 +36,11 @@ function onSubmit(): void {
         />
 
         <Button
-            class="form__submit"
+            class="step__submit"
             type="submit"
             :disabled="!isValid"
         >
-            <slot name="submit">
-                {{ $t("commons.continue") }}
-            </slot>
+            {{ $t("commons.continue") }}
         </Button>
     </form>
 </template>
@@ -50,7 +48,7 @@ function onSubmit(): void {
 <style lang="scss" scoped>
 @use "#layers/ui/app/assets/scss/index" as *;
 
-.form {
+.step {
     display: flex;
     flex-direction: column;
     gap: $distances-s;

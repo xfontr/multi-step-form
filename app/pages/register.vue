@@ -1,37 +1,30 @@
 <script lang="ts" setup>
-import type { Diet } from "#layers/steps/app/types/Diet";
-import type { StepNode } from "#layers/steps/app/types/StepNode";
+import type { Diet } from "../types/Diet";
 import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import Steps from "#layers/steps/app/components/Steps.vue";
-import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
-import useDietStore from "#layers/steps/app/stores/diet";
-import useFlowStore from "#layers/steps/app/stores/flow";
-import steps from "#layers/steps/steps";
+import useStepsStore from "#layers/steps/app/stores/steps";
 import Header from "#layers/ui/app/components/Header.vue";
+import steps from "~/steps";
+import useDietStore from "~/stores/diet";
 
 const { tm } = useI18nArray();
 
 const { diet } = useDietStore();
-const { updateStep, init } = useUsageStore();
-const flow = useFlowStore();
+const { updateStep } = useUsageStore();
+const flow = useStepsStore();
 const { group } = useGroupStore();
 
-const nodes = computed<StepNode<Diet>[]>(() => {
-    const allSteps = tm("register.steps") as string[];
-    const skipSet = new Set(group.stepsSkip ?? []);
-
-    return steps.flatMap((node, i) =>
-        skipSet.has(i) ? [] : { ...node, name: allSteps[i] },
-    );
-});
-
-const { previous, next, index } = useQueryStepper(
-    nodes.value.map(({ name }) => name!),
+const { nodes, stepNames } = useStepNodes(
+    tm("register.steps") as string[],
+    group.stepsSkip ?? [],
+    steps,
 );
 
-function onSubmit<K extends keyof Diet>(key: K, value: unknown) {
-    diet[key] = value as Diet[K];
+const { previous, next, index } = useQueryStepper(stepNames);
+
+function onSubmit<K extends keyof Diet>(key: K, value: Diet[K]) {
+    diet[key] = value;
     next();
     updateStep(flow.index);
 }
@@ -40,10 +33,6 @@ function onPrevious() {
     previous();
     updateStep(flow.index);
 }
-
-onMounted(() => {
-    init(FLOW_TOTAL_STEPS - (group.stepsSkip?.length ?? 0));
-});
 </script>
 
 <template>
@@ -92,7 +81,7 @@ onMounted(() => {
         }
 
         &:has(.steps__back) {
-            :deep(.form__submit) {
+            :deep(.step__submit) {
                 position: absolute !important; // Workarounds primevue style attributes
                 right: 0;
                 bottom: 0;

@@ -1,12 +1,9 @@
 <script lang="ts" setup>
+import type { Props } from "../../types/StepProps";
 import InputText from "#layers/ui/app/components/InputText.vue";
-import Form from "../Form.vue";
+import Step from "../Step.vue";
 
-interface Props {
-    initialValue?: string;
-}
-
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props<string>>(), {
     initialValue: "",
 });
 
@@ -18,7 +15,7 @@ function validate(value?: string): boolean {
 </script>
 
 <template>
-    <Form
+    <Step
         :validate
         :initial-value
         @submit="(v) => emit('submit', v)"
@@ -27,10 +24,10 @@ function validate(value?: string): boolean {
             <InputText
                 id="pet-name"
                 v-model="value.current"
-                :placeholder="$t('register.name.placeholder')"
+                :placeholder="$t(`step.${name}.placeholder`)"
             >
-                {{ $t("register.name.label") }}
+                {{ $t(`step.${name}.label`) }}
             </InputText>
         </template>
-    </Form>
+    </Step>
 </template>

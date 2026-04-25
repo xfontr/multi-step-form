@@ -1,5 +1,5 @@
-const useFlowStore = defineStore(
-    "flow",
+const useStepsStore = defineStore(
+    "steps",
     () => {
         const index = ref<number>(0);
 
@@ -26,4 +26,4 @@ const useFlowStore = defineStore(
     { persist: true },
 );
 
-export default useFlowStore;
+export default useStepsStore;

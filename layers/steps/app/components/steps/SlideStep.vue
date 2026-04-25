@@ -1,13 +1,10 @@
 <script lang="ts" setup>
+import type { Props } from "../../types/StepProps";
 import Slider from "#layers/ui/app/components/Slider.vue";
 import { HIGH_ACTIVITY, LOW_ACTIVITY } from "../../configs/constants";
-import Form from "../Form.vue";
+import Step from "../Step.vue";
 
-interface Props {
-    initialValue?: number;
-}
-
-defineProps<Props>();
+defineProps<Props<number>>();
 
 const emit = defineEmits<{ submit: [number] }>();
 
@@ -19,21 +16,24 @@ function level(value: number) {
 </script>
 
 <template>
-    <Form
+    <Step
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
         <template #default="{ value }">
             <Slider v-model="value.current">
-                {{ $t("register.exercise.label") }}
+                {{ $t(`step.${name}.label`) }}
             </Slider>
 
             <Message
-                v-if="value.current"
+                v-if="
+                    value.current &&
+                    $te(`step.${name}.level.${level(value.current)}`)
+                "
                 severity="secondary"
             >
-                {{ $t(`register.exercise.level.${level(value.current)}`) }}
+                {{ $t(`step.${name}.level.${level(value.current)}`) }}
             </Message>
         </template>
-    </Form>
+    </Step>
 </template>

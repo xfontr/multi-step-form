@@ -1,10 +1,7 @@
 <script lang="ts" setup>
+import type { Props } from "../../types/StepProps";
 import Select from "#layers/ui/app/components/Select.vue";
-import Form from "../Form.vue";
-
-interface Props {
-    initialValue?: string;
-}
+import Steps from "../Step.vue";
 
 withDefaults(defineProps<Props>(), {
     initialValue: "",
@@ -16,26 +13,16 @@ const { tm } = useI18nArray();
 </script>
 
 <template>
-    <Form
+    <Steps
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
         <template #default="{ value }">
             <Select
                 v-model="value.current"
-                :options="tm('data.breeds')"
-                :placeholder="$t('register.race.placeholder')"
+                :options="tm(`step.${name}.options`)"
+                :placeholder="$t(`step.${name}.placeholder`)"
             />
         </template>
-    </Form>
+    </Steps>
 </template>
-
-<style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
-
-.race-form {
-    display: flex;
-    flex-direction: column;
-    gap: $distances-s;
-}
-</style>

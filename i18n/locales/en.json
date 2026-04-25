@@ -8,27 +8,52 @@
     "register": {
         "heading": "Let's get started",
         "description": "Fill the details below",
-        "steps": ["Name", "Gender", "Age", "Weight", "Exercise", "Pathology"],
-        "race": {
-            "placeholder": "Pick a race",
-            "submit": "Let's go"
+        "steps": ["Name", "Gender", "Age", "Weight", "Exercise", "Pathology"]
+    },
+    "step": {
+        "breed": {
+            "placeholder": "Pick a breed",
+            "submit": "Let's go",
+            "options": [
+                "Labrador Retriever",
+                "German Shepherd",
+                "Golden Retriever",
+                "French Bulldog",
+                "Bulldog",
+                "Poodle",
+                "Beagle",
+                "Rottweiler",
+                "Dachshund",
+                "Siberian Husky",
+                "Border Collie",
+                "Shih Tzu",
+                "Cocker Spaniel",
+                "Doberman Pinscher",
+                "Australian Shepherd",
+                "Great Dane",
+                "Chihuahua",
+                "Boxer",
+                "Pomeranian",
+                "Maltese"
+            ]
         },
         "name": {
-            "placeholder": "Miskas",
-            "label": "Pet name"
+            "label": "Pet name",
+            "placeholder": "Miskas"
         },
         "gender": {
-            "label": "We want to learn more about your pet"
+            "label": "We want to learn more about your pet",
+            "options": ["Male", "Female"]
         },
         "age": {
-            "placeholder": "12",
             "label": "What's your dog's age?",
+            "placeholder": "12",
             "submit": "Almost done!",
-            "years": "Wow, that's {years} human years! ;)"
+            "message": "That's {value} years bringing joy :)"
         },
         "weight": {
-            "placeholder": "8",
-            "label": "What's your dog's weight?"
+            "label": "What's your dog's weight?",
+            "placeholder": "8"
         },
         "exercise": {
             "label": "Is your dog active?",
@@ -47,30 +72,5 @@
         "continue": "Continue",
         "yes": "Yes",
         "no": "No"
-    },
-    "data": {
-        "breeds": [
-            "Labrador Retriever",
-            "German Shepherd",
-            "Golden Retriever",
-            "French Bulldog",
-            "Bulldog",
-            "Poodle",
-            "Beagle",
-            "Rottweiler",
-            "Dachshund",
-            "Siberian Husky",
-            "Border Collie",
-            "Shih Tzu",
-            "Cocker Spaniel",
-            "Doberman Pinscher",
-            "Australian Shepherd",
-            "Great Dane",
-            "Chihuahua",
-            "Boxer",
-            "Pomeranian",
-            "Maltese"
-        ],
-        "genders": ["Boy", "Girl"]
     }
 }

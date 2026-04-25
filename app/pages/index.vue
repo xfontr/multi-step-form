@@ -1,21 +1,18 @@
 <script lang="ts" setup>
-import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
-import RaceForm from "#layers/steps/app/components/forms/RaceForm.vue";
-import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
-import useDietStore from "#layers/steps/app/stores/diet";
-import useFlowStore from "#layers/steps/app/stores/flow";
+import SelectStep from "#layers/steps/app/components/steps/SelectStep.vue";
+import useStepsStore from "#layers/steps/app/stores/steps";
 import Card from "#layers/ui/app/components/Card.vue";
 import Header from "#layers/ui/app/components/Header.vue";
+import useDietStore from "~/stores/diet";
 
 const { diet } = useDietStore();
-const flow = useFlowStore();
-const { group } = useGroupStore();
+const flow = useStepsStore();
 
 const usage = useUsageStore();
 
-function onSubmit(race: string): void {
-    diet.race = race;
+function onSubmit(breed: string): void {
+    diet.breed = breed;
     flow.up();
     usage.updateStep(flow.index);
     navigateTo("/register");
@@ -23,7 +20,6 @@ function onSubmit(race: string): void {
 
 onMounted(() => {
     flow.update(0);
-    usage.init(FLOW_TOTAL_STEPS - (group.stepsSkip?.length ?? 0));
 });
 </script>
 
@@ -40,8 +36,9 @@ onMounted(() => {
     </section>
 
     <Card class="cta">
-        <RaceForm
-            :initial-value="diet.race"
+        <SelectStep
+            :initial-value="diet.breed"
+            name="breed"
             @submit="onSubmit"
         />
     </Card>
