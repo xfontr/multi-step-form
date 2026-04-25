@@ -23,7 +23,7 @@ describe("useUsageStore", () => {
 
         store.init(5);
 
-        const usage = store.getUsage();
+        const { usage } = store;
 
         expect(usage.group).toBe("TEST_GROUP");
         expect(usage.id).toBe("test-uuid");
@@ -37,7 +37,7 @@ describe("useUsageStore", () => {
         store.init(5);
         store.updateStep(2);
 
-        const usage = store.getUsage();
+        const { usage } = store;
 
         expect(usage.completion).toBe(40);
         expect(usage.timestamps.total).toBeGreaterThanOrEqual(0);
@@ -49,7 +49,7 @@ describe("useUsageStore", () => {
         store.init(5);
         store.updateStep(5);
 
-        const usage = store.getUsage();
+        const { usage } = store;
 
         expect(usage.success).toBe(true);
         expect(usage.completion).toBe(100);
@@ -62,18 +62,18 @@ describe("useUsageStore", () => {
 
         store.init(5);
 
-        const { init } = store.getUsage().timestamps;
+        const { init } = store.usage.timestamps;
 
         vi.setSystemTime(1100);
         store.updateStep(1);
 
-        const { total } = store.getUsage().timestamps;
+        const { total } = store.usage.timestamps;
 
         expect(total).toBe(1100 - init);
 
         vi.setSystemTime(1300);
         store.updateStep(5);
-        const usage = store.getUsage();
+        const { usage } = store;
 
         expect(usage.timestamps.total).toBe(1300 - init);
         expect(usage.timestamps.success).toBe(1300);

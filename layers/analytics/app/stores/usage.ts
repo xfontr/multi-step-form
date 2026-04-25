@@ -7,10 +7,10 @@ const useUsageStore = defineStore(
     () => {
         const { group } = useGroupStore();
 
-        const maxStep = ref<number>(1);
+        const maxStep = ref<number>();
 
         const completionRatePerStep = computed<number>(() => {
-            return MAX_COMPLETION / maxStep.value;
+            return MAX_COMPLETION / (maxStep.value ?? 1);
         });
 
         const usage = reactive<Usage>({
@@ -26,13 +26,12 @@ const useUsageStore = defineStore(
         });
 
         function init(max: number): void {
-            if (!usage.id) usage.id = crypto.randomUUID();
+            maxStep.value ??= max;
 
+            if (usage.id) return;
+
+            usage.id = crypto.randomUUID();
             usage.timestamps.init = Date.now();
-            usage.timestamps.success = 0;
-            usage.timestamps.total = 0;
-
-            maxStep.value = max;
 
             post();
         }
@@ -57,7 +56,7 @@ const useUsageStore = defineStore(
         function updateStep(step: number): void {
             usage.completion = getCompletion(
                 step,
-                maxStep.value,
+                maxStep.value ?? 1,
                 completionRatePerStep.value,
             );
 
@@ -66,13 +65,15 @@ const useUsageStore = defineStore(
             post();
         }
 
-        function getUsage(): Readonly<Usage> {
-            return readonly(usage);
-        }
-
-        return { getUsage, init, updateStep };
+        return {
+            init,
+            updateStep,
+            // This is a lie to prevent consumers from actually altering the usage
+            // pinia persisted package won't allow the use of readonly()
+            usage: usage as Readonly<Usage>,
+        };
     },
-    { persist: { pick: ["usage"] } },
+    { persist: true },
 );
 
 export default useUsageStore;
