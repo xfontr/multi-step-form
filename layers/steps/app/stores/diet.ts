@@ -1,9 +1,12 @@
+import type { Diet } from "../types/Diet";
+
 const useDietStore = defineStore(
     "diet",
     () => {
-        const diet = reactive({
+        const diet = reactive<Diet>({
             race: "",
             name: "",
+            genre: "",
         });
 
         return { diet };
