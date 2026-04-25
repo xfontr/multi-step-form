@@ -6,6 +6,7 @@ import GenderForm from "#layers/steps/app/components/GenderForm.vue";
 import NameForm from "#layers/steps/app/components/NameForm.vue";
 import PatologyForm from "#layers/steps/app/components/PathologyForm.vue";
 import WeightForm from "#layers/steps/app/components/WeightForm.vue";
+import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import useDietStore from "#layers/steps/app/stores/diet";
 import useFlowStore from "#layers/steps/app/stores/flow";
 import Button from "#layers/ui/app/components/Button.vue";
@@ -14,7 +15,7 @@ import Stepper from "#layers/ui/app/components/Stepper.vue";
 
 const { tm } = useI18nArray();
 const { diet } = useDietStore();
-const { updateStep } = useUsageStore();
+const { updateStep, init } = useUsageStore();
 const flow = useFlowStore();
 
 const steps = computed<string[]>(() => tm("register.steps"));
@@ -33,6 +34,10 @@ function onPrevious() {
     previous();
     updateStep(flow.index);
 }
+
+onMounted(() => {
+    init(FLOW_TOTAL_STEPS);
+});
 
 const onSubmitName = onSubmit("name");
 const onSubmitGender = onSubmit("gender");

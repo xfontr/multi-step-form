@@ -7,10 +7,10 @@ const useUsageStore = defineStore(
     () => {
         const { group } = useGroupStore();
 
-        const maxStep = ref<number>(1);
+        const maxStep = ref<number>();
 
         const completionRatePerStep = computed<number>(() => {
-            return MAX_COMPLETION / maxStep.value;
+            return MAX_COMPLETION / (maxStep.value ?? 1);
         });
 
         const usage = reactive<Usage>({
@@ -18,12 +18,20 @@ const useUsageStore = defineStore(
             id: "",
             completion: 0,
             success: false,
+            timestamps: {
+                init: 0,
+                success: 0,
+                total: 0,
+            },
         });
 
         function init(max: number): void {
-            if (!usage.id) usage.id = crypto.randomUUID();
+            maxStep.value ??= max;
 
-            maxStep.value = max;
+            if (usage.id) return;
+
+            usage.id = crypto.randomUUID();
+            usage.timestamps.init = Date.now();
 
             post();
         }
@@ -36,21 +44,36 @@ const useUsageStore = defineStore(
             });
         }
 
+        function updateTimestamps(): void {
+            if (usage.success) usage.timestamps.success = Date.now();
+            usage.timestamps.total = Date.now() - usage.timestamps.init;
+        }
+
+        function updateSuccessStatus(): void {
+            usage.success = usage.completion === MAX_COMPLETION;
+        }
+
         function updateStep(step: number): void {
             usage.completion = getCompletion(
                 step,
-                maxStep.value,
+                maxStep.value ?? 1,
                 completionRatePerStep.value,
             );
 
-            usage.success = usage.completion === MAX_COMPLETION;
-
+            updateSuccessStatus();
+            updateTimestamps();
             post();
         }
 
-        return { usage, init, updateStep };
+        return {
+            init,
+            updateStep,
+            // This is a lie to prevent consumers from actually altering the usage
+            // pinia persisted package won't allow the use of readonly()
+            usage: usage as Readonly<Usage>,
+        };
     },
-    { persist: { pick: ["usage"] } },
+    { persist: true },
 );
 
 export default useUsageStore;
