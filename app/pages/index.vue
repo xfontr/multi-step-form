@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import RaceForm from "#layers/steps/app/components/forms/RaceForm.vue";
-import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import useDietStore from "#layers/steps/app/stores/diet";
 import useFlowStore from "#layers/steps/app/stores/flow";
 import Card from "#layers/ui/app/components/Card.vue";
@@ -10,7 +8,6 @@ import Header from "#layers/ui/app/components/Header.vue";
 
 const { diet } = useDietStore();
 const flow = useFlowStore();
-const { group } = useGroupStore();
 
 const usage = useUsageStore();
 
@@ -23,7 +20,6 @@ function onSubmit(race: string): void {
 
 onMounted(() => {
     flow.update(0);
-    usage.init(FLOW_TOTAL_STEPS - (group.stepsSkip?.length ?? 0));
 });
 </script>
 
