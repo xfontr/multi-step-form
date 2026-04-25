@@ -1,47 +1,62 @@
 <script lang="ts" setup>
-import Button from "#shared/ui/components/Button.vue";
-import Select from "#shared/ui/components/Select.vue";
+import RaceForm from "#layers/steps/app/components/RaceForm.vue";
+import useDietStore from "#layers/steps/app/stores/diet";
+import useFlowStore from "#layers/steps/app/stores/flow";
+import Card from "#layers/ui/app/components/Card.vue";
+import Header from "#layers/ui/app/components/Header.vue";
+
+const { diet } = useDietStore();
+const { up, update } = useFlowStore();
+
+function onSubmit(race: string): void {
+    diet.race = race;
+    up();
+    navigateTo("/register");
+}
+
+onMounted(() => {
+    update(0);
+});
 </script>
 
 <template>
     <section class="hero">
-        <header class="hero__header">
-            <h1>{{ $t("landing.heading") }}</h1>
-            <p>{{ $t("landing.subHeading") }}</p>
-
-            <form class="hero__form">
-                <Select
-                    :options="['small-dog']"
-                    :placeholder="$t('landing.inputPlaceholder')"
-                />
-
-                <Button type="submit">
-                    {{ $t("landing.cta") }}
-                </Button>
-            </form>
-        </header>
+        <Header class="hero__header">
+            <template #heading>
+                {{ $t("landing.heading") }}
+            </template>
+            <template #description>
+                {{ $t("landing.subHeading") }}
+            </template>
+        </Header>
     </section>
+
+    <Card class="cta">
+        <RaceForm
+            :initial-value="diet.race"
+            @submit="onSubmit"
+        />
+    </Card>
 </template>
 
 <style lang="scss" scoped>
-@use "#shared/ui/scss/index" as *;
+@use "#layers/ui/app/assets/scss/index" as *;
 
 .hero {
-    min-height: 50vh;
     padding: $distances-m;
     display: flex;
+    background-color: beige;
     align-items: center;
+    height: 50vh;
 
     &__header {
-        display: flex;
-        flex-direction: column;
-        gap: $distances-s;
         width: 50%;
     }
+}
 
-    &__form {
-        display: flex;
-        gap: $distances-s;
-    }
+.cta {
+    margin-left: $distances-m;
+    margin-top: -$distances-m;
+    width: 50%;
 }
 </style>
