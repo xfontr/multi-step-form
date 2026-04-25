@@ -7,6 +7,7 @@ const useDietStore = defineStore(
             race: "",
             name: "",
             genre: "",
+            age: undefined,
         });
 
         return { diet };

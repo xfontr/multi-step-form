@@ -83,6 +83,7 @@ function onUpdateValue(value: string): void {
 
     &__content {
         position: relative;
+        width: 100%;
     }
 }
 </style>
