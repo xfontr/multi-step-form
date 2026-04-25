@@ -15,5 +15,6 @@ export default antfu({
         "antfu/consistent-list-newline": "off",
         "style/arrow-parens": "off",
         "import/consistent-type-specifier-style": "off",
+        "style/operator-linebreak": "off",
     },
 });
