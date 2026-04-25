@@ -14,8 +14,8 @@ const steps = computed<string[]>(() => tm("register.steps"));
 
 const { previous, next, index } = useQueryStepper(steps);
 
-function onSubmit(key: keyof Diet) {
-    return (value: string) => {
+function onSubmit<K extends keyof Diet>(key: K) {
+    return (value: Diet[K]) => {
         diet[key] = value;
         next();
     };
@@ -23,6 +23,7 @@ function onSubmit(key: keyof Diet) {
 
 const onSubmitName = onSubmit("name");
 const onSubmitGenre = onSubmit("genre");
+const onSubmitAge = onSubmit("age");
 </script>
 
 <template>
@@ -53,7 +54,10 @@ const onSubmitGenre = onSubmit("genre");
             </template>
 
             <template #[steps[2]]>
-                <p>Step 3</p>
+                <AgeForm
+                    :initial-value="diet.age"
+                    @submit="onSubmitAge"
+                />
             </template>
 
             <template #back>
@@ -113,7 +117,11 @@ const onSubmitGenre = onSubmit("genre");
     padding: 0 $distances-m;
 }
 
+:deep(.stepper__content) {
+    width: 50%;
+}
+
 :deep(.form) {
-    min-height: 20vh;
+    min-height: 30vh;
 }
 </style>

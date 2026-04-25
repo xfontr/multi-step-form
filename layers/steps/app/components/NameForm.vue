@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Input from "#layers/ui/app/components/Input.vue";
+import InputText from "#layers/ui/app/components/InputText.vue";
 import Form from "./Form.vue";
 
 interface Props {
@@ -24,13 +24,13 @@ function validate(value: string): boolean {
         @submit="(v) => emit('submit', v)"
     >
         <template #default="{ value }">
-            <Input
+            <InputText
                 id="pet-name"
                 v-model="value.current"
                 :placeholder="$t('register.name.placeholder')"
             >
                 {{ $t("register.name.label") }}
-            </Input>
+            </InputText>
         </template>
 
         <template #submit>
