@@ -12,7 +12,7 @@
         "prepare": "node .husky/install.mjs",
         "lint": "eslint",
         "format": "prettier --check .",
-        "test": "vitest --passWithNoTests=true",
+        "test": "vitest",
         "test:dev": "vitest --watch"
     },
     "dependencies": {
