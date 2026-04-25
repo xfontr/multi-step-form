@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
-import RaceForm from "#layers/steps/app/components/RaceForm.vue";
+import RaceForm from "#layers/steps/app/components/forms/RaceForm.vue";
 import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import useDietStore from "#layers/steps/app/stores/diet";
 import useFlowStore from "#layers/steps/app/stores/flow";

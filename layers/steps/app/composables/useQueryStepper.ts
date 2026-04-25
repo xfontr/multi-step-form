@@ -2,7 +2,7 @@ import { useStepper } from "@vueuse/core";
 import { FLOW_INITIAL_STEPS } from "../configs/constants";
 import useFlowStore from "../stores/flow";
 
-function useQueryStepper(steps: Ref<string[]>) {
+function useQueryStepper(steps: string[]) {
     const flow = useFlowStore();
     const { goTo, goToNext, goToPrevious, index } = useStepper(steps);
 
@@ -38,7 +38,7 @@ function useQueryStepper(steps: Ref<string[]>) {
     ): boolean {
         if (query === undefined) return false;
 
-        const queryStep = steps.value[query];
+        const queryStep = steps[query];
 
         if (queryStep && query <= current) {
             goTo(queryStep);
@@ -50,7 +50,7 @@ function useQueryStepper(steps: Ref<string[]>) {
     }
 
     function trySetFlowStep(current: number): void {
-        const flowStep = steps.value[current];
+        const flowStep = steps[current];
         if (!flowStep) return;
 
         goTo(flowStep);
