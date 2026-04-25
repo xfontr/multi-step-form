@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { Diet } from "#layers/steps/app/types/Diet";
+import GenreForm from "#layers/steps/app/components/GenreForm.vue";
 import NameForm from "#layers/steps/app/components/NameForm.vue";
 import useDietStore from "#layers/steps/app/stores/diet";
 import Button from "#layers/ui/app/components/Button.vue";
@@ -10,13 +12,17 @@ const { diet } = useDietStore();
 
 const steps = computed<string[]>(() => tm("register.steps"));
 
-const { previous, onSubmit, index } = useQueryStepper(steps);
+const { previous, next, index } = useQueryStepper(steps);
 
-function onNameSubmit(name: string): void {
-    onSubmit(() => {
-        diet.name = name;
-    });
+function onSubmit(key: keyof Diet) {
+    return (value: string) => {
+        diet[key] = value;
+        next();
+    };
 }
+
+const onSubmitName = onSubmit("name");
+const onSubmitGenre = onSubmit("genre");
 </script>
 
 <template>
@@ -35,26 +41,30 @@ function onNameSubmit(name: string): void {
             <template #[steps[0]]>
                 <NameForm
                     :initial-value="diet.name"
-                    @submit="onNameSubmit"
+                    @submit="onSubmitName"
                 />
             </template>
 
             <template #[steps[1]]>
-                <p>Step 2</p>
+                <GenreForm
+                    :initial-value="diet.genre"
+                    @submit="onSubmitGenre"
+                />
             </template>
 
             <template #[steps[2]]>
                 <p>Step 3</p>
             </template>
-        </Stepper>
 
-        <Button
-            v-if="index"
-            label="Back"
-            severity="secondary"
-            class="register__back"
-            @click="previous"
-        />
+            <template #back>
+                <Button
+                    :label="$t('commons.back')"
+                    severity="secondary"
+                    class="register__back"
+                    @click="previous"
+                />
+            </template>
+        </Stepper>
     </section>
 </template>
 
@@ -72,8 +82,20 @@ function onNameSubmit(name: string): void {
     }
 
     &__back {
-        width: 20%;
         margin: 0 auto;
+        position: absolute !important; // Workarounds primevue style attributes
+        left: 0;
+        bottom: 0;
+        width: 45%;
+    }
+
+    &:has(.register__back) {
+        :deep(.form__submit) {
+            position: absolute !important; // Workarounds primevue style attributes
+            right: 0;
+            bottom: 0;
+            width: 45%;
+        }
     }
 }
 
@@ -89,5 +111,9 @@ function onNameSubmit(name: string): void {
 
 :deep(.stepper__steps) {
     padding: 0 $distances-m;
+}
+
+:deep(.form) {
+    min-height: 20vh;
 }
 </style>
