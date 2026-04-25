@@ -4,4 +4,5 @@ export interface Diet {
     genre: string;
     age: number | undefined;
     weight: number | undefined;
+    exercise: number;
 }
