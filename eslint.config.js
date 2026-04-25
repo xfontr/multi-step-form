@@ -10,4 +10,7 @@ export default antfu({
     },
     jsonc: false,
     yaml: false,
+    rules: {
+        "antfu/if-newline": "off",
+    },
 });

@@ -11,17 +11,23 @@ export default defineNuxtConfig({
         "@nuxt/fonts",
         "@nuxtjs/i18n",
         "@primevue/nuxt-module",
+        "@pinia/nuxt",
+        "pinia-plugin-persistedstate/nuxt",
     ],
 
     i18n: {
         defaultLocale: "es",
         locales: [
-            { code: "es", name: "Spanish", file: "es.json" },
+            // { code: "es", name: "Spanish", file: "es.json" },
             { code: "en", name: "English", file: "en.json" },
         ],
     },
 
-    css: ["#shared/ui/scss/index.scss"],
+    css: ["#layers/ui/app/assets/scss/index.scss"],
+
+    pinia: {
+        storesDirs: ["./app/stores/**", "./app/layers/**/app/stores/**"],
+    },
 
     primevue: {
         usePrimeVue: true,
