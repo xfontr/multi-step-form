@@ -8,34 +8,40 @@
     "register": {
         "heading": "Let's get started",
         "description": "Fill the details below",
-        "steps": ["Name", "Genre", "Age", "Weight"],
+        "steps": ["Name", "Genre", "Age", "Weight", "Exercise"],
         "race": {
             "placeholder": "Pick a race",
             "submit": "Let's go"
         },
         "name": {
             "placeholder": "Miskas",
-            "label": "Pet name",
-            "submit": "Continue"
+            "label": "Pet name"
         },
         "genre": {
-            "label": "We want to learn more about your pet",
-            "submit": "Continue"
+            "label": "We want to learn more about your pet"
         },
         "age": {
             "placeholder": "12",
             "label": "What's your dog's age?",
-            "submit": "Continue",
+            "submit": "Almost done!",
             "years": "Wow, that's {years} human years! ;)"
         },
         "weight": {
             "placeholder": "8",
-            "label": "What's your dog's weight?",
-            "submit": "Continue"
+            "label": "What's your dog's weight?"
+        },
+        "exercise": {
+            "label": "Is your dog active?",
+            "level": {
+                "low": "Not very active",
+                "medium": "Normal",
+                "high": "Very active"
+            }
         }
     },
     "commons": {
-        "back": "Back"
+        "back": "Back",
+        "continue": "Continue"
     },
     "data": {
         "breeds": [

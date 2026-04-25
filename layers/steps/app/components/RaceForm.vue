@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
     initialValue: "",
 });
 
-const emit = defineEmits<{ submit: [string] }>();
+const emit = defineEmits<{ submit: [string | undefined] }>();
 
 const { tm } = useI18nArray();
 </script>
@@ -26,10 +26,6 @@ const { tm } = useI18nArray();
                 :options="tm('data.breeds')"
                 :placeholder="$t('register.race.placeholder')"
             />
-        </template>
-
-        <template #submit>
-            {{ $t("register.race.submit") }}
         </template>
     </Form>
 </template>
