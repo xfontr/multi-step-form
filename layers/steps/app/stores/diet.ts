@@ -10,7 +10,7 @@ const useDietStore = defineStore(
             age: undefined,
             weight: undefined,
             exercise: 0,
-            pathology: "",
+            pathology: undefined,
         });
 
         return { diet };

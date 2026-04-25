@@ -5,5 +5,5 @@ export interface Diet {
     age: number | undefined;
     weight: number | undefined;
     exercise: number;
-    pathology: string;
+    pathology: boolean | undefined;
 }
