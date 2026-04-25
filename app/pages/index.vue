@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import RaceStep from "#layers/steps/app/components/steps/RaceStep.vue";
-import useDietStore from "#layers/steps/app/stores/diet";
-import useFlowStore from "#layers/steps/app/stores/flow";
+import useStepsStore from "#layers/steps/app/stores/steps";
 import Card from "#layers/ui/app/components/Card.vue";
 import Header from "#layers/ui/app/components/Header.vue";
+import useDietStore from "~/stores/diet";
 
 const { diet } = useDietStore();
-const flow = useFlowStore();
+const flow = useStepsStore();
 
 const usage = useUsageStore();
 

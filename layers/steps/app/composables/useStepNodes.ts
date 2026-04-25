@@ -1,12 +1,12 @@
-import type { Diet } from "../types/Diet";
 import type { StepNode } from "../types/StepNode";
-import steps from "../components/steps";
 
-function useStepNodes(list: string[], skip: number[]) {
-    const nodes = computed<StepNode<Diet>[]>(() => {
+function useStepNodes<
+    Store extends { [K in keyof Store]: string | number | boolean | undefined },
+>(list: string[], skip: number[], stepNodes: StepNode<Store>[]) {
+    const nodes = computed<StepNode<Store>[]>(() => {
         const skipSet = new Set(skip);
 
-        return steps.flatMap((node, i) =>
+        return stepNodes.flatMap((node, i) =>
             skipSet.has(i) ? [] : { ...node, name: list[i] },
         );
     });

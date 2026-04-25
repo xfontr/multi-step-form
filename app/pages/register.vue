@@ -1,22 +1,24 @@
 <script lang="ts" setup>
-import type { Diet } from "#layers/steps/app/types/Diet";
+import type { Diet } from "../types/Diet";
 import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import Steps from "#layers/steps/app/components/Steps.vue";
-import useDietStore from "#layers/steps/app/stores/diet";
-import useFlowStore from "#layers/steps/app/stores/flow";
+import useStepsStore from "#layers/steps/app/stores/steps";
 import Header from "#layers/ui/app/components/Header.vue";
+import steps from "~/steps";
+import useDietStore from "~/stores/diet";
 
 const { tm } = useI18nArray();
 
 const { diet } = useDietStore();
 const { updateStep } = useUsageStore();
-const flow = useFlowStore();
+const flow = useStepsStore();
 const { group } = useGroupStore();
 
 const { nodes, stepNames } = useStepNodes(
     tm("register.steps") as string[],
     group.stepsSkip ?? [],
+    steps,
 );
 
 const { previous, next, index } = useQueryStepper(stepNames);
