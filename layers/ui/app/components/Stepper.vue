@@ -21,7 +21,9 @@ const emit = defineEmits<{ update: [string] }>();
 
 const slots = useSlots();
 
-const slotKeys = computed<string[]>(() => Object.keys(slots));
+const slotKeys = computed<string[]>(() =>
+    Object.keys(slots).filter((key) => key !== "back"),
+);
 
 const value = computed<string>(() => (props.index + 1).toString());
 
@@ -45,7 +47,13 @@ function onUpdateValue(value: string): void {
                 class="stepper__panel"
                 :value="(slotIndex + 1).toString()"
             >
-                <slot :name />
+                <article class="stepper__content">
+                    <slot :name />
+                    <slot
+                        v-if="index"
+                        name="back"
+                    />
+                </article>
             </StepPanel>
         </StepPanels>
 
@@ -71,6 +79,10 @@ function onUpdateValue(value: string): void {
 
     .p-steppanels {
         padding: 0;
+    }
+
+    &__content {
+        position: relative;
     }
 }
 </style>

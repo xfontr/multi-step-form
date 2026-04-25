@@ -1,66 +1,40 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import Button from "#layers/ui/app/components/Button.vue";
 import Input from "#layers/ui/app/components/Input.vue";
+import Form from "./Form.vue";
 
 interface Props {
     initialValue?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), { initialValue: "" });
+withDefaults(defineProps<Props>(), {
+    initialValue: "",
+});
 
 const emit = defineEmits<{ submit: [string] }>();
 
-const name = ref<string>(props.initialValue);
-
-/**
- * [DEV-COMMENT]
- *
- * Usually we'd want a better validation system, using a library such as Zod.
- * However, based on the validation system I've seen in Dogfy, I've opted to
- * keep it simple (no proper rule separation nor error messages)
- */
-const isValid = computed<boolean>(() => /^\D{2,}$/.test(name.value.trim()));
-
-function onSubmit(): void {
-    emit("submit", name.value);
+function validate(value: string): boolean {
+    return /^\D{2,}$/.test(value.trim());
 }
 </script>
 
 <template>
-    <form
-        class="name-form"
-        @submit.prevent="onSubmit"
+    <Form
+        :validate
+        :initial-value
+        @submit="(v) => emit('submit', v)"
     >
-        <Input
-            id="pet-name"
-            v-model="name"
-            :placeholder="$t('register.name.placeholder')"
-        >
-            {{ $t("register.name.label") }}
-        </Input>
+        <template #default="{ value }">
+            <Input
+                id="pet-name"
+                v-model="value.current"
+                :placeholder="$t('register.name.placeholder')"
+            >
+                {{ $t("register.name.label") }}
+            </Input>
+        </template>
 
-        <Button
-            class="name-form__submit"
-            type="submit"
-            :disabled="!isValid"
-        >
+        <template #submit>
             {{ $t("register.name.submit") }}
-        </Button>
-    </form>
+        </template>
+    </Form>
 </template>
-
-<style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
-
-.name-form {
-    display: flex;
-    flex-direction: column;
-    gap: $distances-s;
-
-    &__submit {
-        width: fit-content;
-        align-self: center;
-    }
-}
-</style>

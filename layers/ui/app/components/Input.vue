@@ -1,9 +1,13 @@
 <script lang="ts" setup>
 import { IftaLabel, InputText } from "primevue";
 
+interface Props {
+    id: string;
+}
+
 defineOptions({ inheritAttrs: false });
 
-defineProps<{ id: string }>();
+defineProps<Props>();
 
 const model = defineModel<string>();
 </script>
