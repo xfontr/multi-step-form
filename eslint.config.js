@@ -17,5 +17,7 @@ export default antfu({
         "import/consistent-type-specifier-style": "off",
         "style/operator-linebreak": "off",
         "style/indent": "off",
+        "vue/html-indent": "off",
+        "vue/operator-linebreak": "off",
     },
 });

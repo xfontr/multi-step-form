@@ -1,10 +1,7 @@
 <script lang="ts" setup>
+import type { Props } from "../../types/StepProps";
 import Select from "#layers/ui/app/components/Select.vue";
 import Steps from "../Step.vue";
-
-interface Props {
-    initialValue?: string;
-}
 
 withDefaults(defineProps<Props>(), {
     initialValue: "",
@@ -23,8 +20,8 @@ const { tm } = useI18nArray();
         <template #default="{ value }">
             <Select
                 v-model="value.current"
-                :options="tm('data.breeds')"
-                :placeholder="$t('register.race.placeholder')"
+                :options="tm(`step.${name}.options`)"
+                :placeholder="$t(`step.${name}.placeholder`)"
             />
         </template>
     </Steps>

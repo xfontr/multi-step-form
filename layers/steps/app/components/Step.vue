@@ -40,9 +40,7 @@ function onSubmit(): void {
             type="submit"
             :disabled="!isValid"
         >
-            <slot name="submit">
-                {{ $t("commons.continue") }}
-            </slot>
+            {{ $t("commons.continue") }}
         </Button>
     </form>
 </template>

@@ -1,12 +1,9 @@
 <script lang="ts" setup>
+import type { Props } from "../../types/StepProps";
 import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
 import Steps from "../Step.vue";
 
-interface Props {
-    initialValue?: boolean;
-}
-
-defineProps<Props>();
+defineProps<Props<boolean>>();
 
 const emit = defineEmits<{ submit: [boolean] }>();
 
@@ -17,7 +14,7 @@ const options = computed<[string, string]>(() => [
     t("commons.yes"),
 ]);
 
-function toTextBoolean(value: boolean) {
+function toTextBoolean(value?: boolean) {
     const [falseText, trueText] = options.value;
     return value ? trueText : falseText;
 }
@@ -36,10 +33,10 @@ function onSubmit(value: string | number) {
         <template #default="{ value }">
             <SelectOptions
                 v-model="value.current"
-                name="pathology"
+                :name
                 :options
             >
-                {{ $t("register.pathology.label") }}
+                {{ $t(`step.${name}.label`) }}
             </SelectOptions>
         </template>
     </Steps>

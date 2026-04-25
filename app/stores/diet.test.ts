@@ -11,7 +11,7 @@ describe("useDietStore", () => {
         const store = useDietStore();
 
         expect(store.diet).toEqual({
-            race: "",
+            breed: "",
             name: "",
             gender: "",
             age: undefined,

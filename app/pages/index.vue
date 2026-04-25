@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import useUsageStore from "#layers/analytics/app/stores/usage";
-import RaceStep from "#layers/steps/app/components/steps/RaceStep.vue";
+import SelectStep from "#layers/steps/app/components/steps/SelectStep.vue";
 import useStepsStore from "#layers/steps/app/stores/steps";
 import Card from "#layers/ui/app/components/Card.vue";
 import Header from "#layers/ui/app/components/Header.vue";
@@ -11,8 +11,8 @@ const flow = useStepsStore();
 
 const usage = useUsageStore();
 
-function onSubmit(race: string): void {
-    diet.race = race;
+function onSubmit(breed: string): void {
+    diet.breed = breed;
     flow.up();
     usage.updateStep(flow.index);
     navigateTo("/register");
@@ -36,8 +36,9 @@ onMounted(() => {
     </section>
 
     <Card class="cta">
-        <RaceStep
-            :initial-value="diet.race"
+        <SelectStep
+            :initial-value="diet.breed"
+            name="breed"
             @submit="onSubmit"
         />
     </Card>
