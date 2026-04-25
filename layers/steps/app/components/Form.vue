@@ -3,17 +3,17 @@ import type { UnwrapRef } from "vue";
 import Button from "#layers/ui/app/components/Button.vue";
 
 interface Props {
-    initialValue: T;
-    validate?: (value: UnwrapRef<T>) => boolean;
+    initialValue?: T;
+    validate?: (value?: UnwrapRef<T>) => boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    validate: (value: UnwrapRef<T>) => Boolean(value),
+    validate: (value?: UnwrapRef<T>) => Boolean(value),
 });
 
-const emit = defineEmits<{ submit: [UnwrapRef<T>] }>();
+const emit = defineEmits<{ submit: [UnwrapRef<T> | undefined] }>();
 
-const value = ref<{ current: T }>({ current: props.initialValue });
+const value = ref<{ current: T | undefined }>({ current: props.initialValue });
 
 const isValid = computed<boolean>(() => {
     return props.validate(value.value.current);
@@ -30,7 +30,10 @@ function onSubmit(): void {
         class="form"
         @submit.prevent="onSubmit"
     >
-        <slot :value />
+        <slot
+            :value
+            :is-valid
+        />
 
         <Button
             class="form__submit"

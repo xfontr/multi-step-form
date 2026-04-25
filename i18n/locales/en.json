@@ -21,6 +21,12 @@
         "genre": {
             "label": "We want to learn more about your pet",
             "submit": "Continue"
+        },
+        "age": {
+            "placeholder": "12",
+            "label": "What's your dog's age?",
+            "submit": "Continue",
+            "years": "Wow, that's {years} human years! ;)"
         }
     },
     "commons": {
