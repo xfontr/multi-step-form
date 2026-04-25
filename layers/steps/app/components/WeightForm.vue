@@ -25,9 +25,5 @@ const emit = defineEmits<{ submit: [number | undefined] }>();
                 {{ $t("register.weight.label") }}
             </InputNumber>
         </template>
-
-        <template #submit>
-            {{ $t("register.weight.submit") }}
-        </template>
     </Form>
 </template>

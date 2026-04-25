@@ -9,6 +9,7 @@ const useDietStore = defineStore(
             genre: "",
             age: undefined,
             weight: undefined,
+            exercise: 0,
         });
 
         return { diet };

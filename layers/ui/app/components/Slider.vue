@@ -1,28 +1,19 @@
 <script lang="ts" setup>
-import { SelectButton } from "primevue";
+import { Slider } from "primevue";
 
-interface Props {
-    /**
-     * @description Maximum two options.
-     */
-    options: [string, string];
-    name: string;
-}
-
-defineProps<Props>();
-
-const model = defineModel<string>();
+const model = defineModel<number>();
 </script>
 
 <template>
-    <div class="select-options">
+    <div class="slider">
         <span>
             <slot />
         </span>
-        <SelectButton
+
+        <Slider
             v-model="model"
-            :name
-            :options
+            class="slider__slider"
+            number
         />
     </div>
 </template>
@@ -30,10 +21,14 @@ const model = defineModel<string>();
 <style lang="scss" scoped>
 @use "#layers/ui/app/assets/scss/index" as *;
 
-.select-options {
+.slider {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: $distances-s;
+
+    &__slider {
+        width: 100%;
+    }
 }
 </style>

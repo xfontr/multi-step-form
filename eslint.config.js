@@ -13,5 +13,6 @@ export default antfu({
     rules: {
         "antfu/if-newline": "off",
         "style/arrow-parens": "off",
+        "import/consistent-type-specifier-style": "off",
     },
 });

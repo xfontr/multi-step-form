@@ -1,9 +1,15 @@
 <script lang="ts" setup>
-import Message from "primevue/message";
+import Message, { type MessageProps } from "primevue/message";
+
+interface Props {
+    severity?: MessageProps["severity"];
+}
+
+defineProps<Props>();
 </script>
 
 <template>
-    <Message>
+    <Message :severity>
         <slot />
     </Message>
 </template>

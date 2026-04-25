@@ -14,7 +14,7 @@ const emit = defineEmits<{ submit: [string] }>();
 
 const { tm } = useI18nArray();
 
-function validate(value: string): boolean {
+function validate(value?: string): boolean {
     return Boolean(value);
 }
 
@@ -37,10 +37,6 @@ const options = computed<[string, string]>(
             >
                 {{ $t("register.genre.label") }}
             </SelectOptions>
-        </template>
-
-        <template #submit>
-            {{ $t("register.genre.submit") }}
         </template>
     </Form>
 </template>

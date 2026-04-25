@@ -10,10 +10,10 @@ withDefaults(defineProps<Props>(), {
     initialValue: "",
 });
 
-const emit = defineEmits<{ submit: [string] }>();
+const emit = defineEmits<{ submit: [string | undefined] }>();
 
-function validate(value: string): boolean {
-    return /^\D{2,}$/.test(value.trim());
+function validate(value?: string): boolean {
+    return /^\D{2,}$/.test(value?.trim() ?? "");
 }
 </script>
 
@@ -31,10 +31,6 @@ function validate(value: string): boolean {
             >
                 {{ $t("register.name.label") }}
             </InputText>
-        </template>
-
-        <template #submit>
-            {{ $t("register.name.submit") }}
         </template>
     </Form>
 </template>
