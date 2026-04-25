@@ -16,17 +16,12 @@ const model = defineModel<number>();
 <template>
     <IftaLabel class="input-number">
         <InputNumber
-            :id
             v-model="model"
+            :input-id="id"
+            fluid
             :placeholder
             class="input-number__field"
         />
         <label :for="id"><slot /></label>
     </IftaLabel>
 </template>
-
-<style lang="scss" scoped>
-.input-number__field {
-    width: 100%;
-}
-</style>

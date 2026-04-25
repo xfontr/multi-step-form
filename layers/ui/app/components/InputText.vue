@@ -18,15 +18,10 @@ const model = defineModel<string>();
         <InputText
             :id
             v-model="model"
+            fluid
             :placeholder
             class="input-text__field"
         />
         <label :for="id"><slot /></label>
     </IftaLabel>
 </template>
-
-<style lang="scss" scoped>
-.input-text__field {
-    width: 100%;
-}
-</style>

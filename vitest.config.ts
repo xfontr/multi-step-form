@@ -11,5 +11,6 @@ export default defineVitestConfig({
             reporter: ["text", "html", "clover", "json", "lcov"],
         },
         environment: "happy-dom",
+        setupFiles: ["./unit.setup.ts"],
     },
 });
