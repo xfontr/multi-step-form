@@ -8,7 +8,7 @@
     "register": {
         "heading": "Let's get started",
         "description": "Fill the details below",
-        "steps": ["Name", "Age", "Weight"],
+        "steps": ["Name", "Genre", "Age", "Weight"],
         "race": {
             "placeholder": "Pick a race",
             "submit": "Let's go"
@@ -27,6 +27,11 @@
             "label": "What's your dog's age?",
             "submit": "Continue",
             "years": "Wow, that's {years} human years! ;)"
+        },
+        "weight": {
+            "placeholder": "8",
+            "label": "What's your dog's weight?",
+            "submit": "Continue"
         }
     },
     "commons": {

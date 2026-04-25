@@ -2,6 +2,7 @@
 import type { Diet } from "#layers/steps/app/types/Diet";
 import GenreForm from "#layers/steps/app/components/GenreForm.vue";
 import NameForm from "#layers/steps/app/components/NameForm.vue";
+import WeightForm from "#layers/steps/app/components/WeightForm.vue";
 import useDietStore from "#layers/steps/app/stores/diet";
 import Button from "#layers/ui/app/components/Button.vue";
 import Header from "#layers/ui/app/components/Header.vue";
@@ -24,6 +25,7 @@ function onSubmit<K extends keyof Diet>(key: K) {
 const onSubmitName = onSubmit("name");
 const onSubmitGenre = onSubmit("genre");
 const onSubmitAge = onSubmit("age");
+const onSubmitWeight = onSubmit("weight");
 </script>
 
 <template>
@@ -57,6 +59,13 @@ const onSubmitAge = onSubmit("age");
                 <AgeForm
                     :initial-value="diet.age"
                     @submit="onSubmitAge"
+                />
+            </template>
+
+            <template #[steps[3]]>
+                <WeightForm
+                    :initial-value="diet.weight"
+                    @submit="onSubmitWeight"
                 />
             </template>
 
