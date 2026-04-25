@@ -20,12 +20,12 @@ interface Props {
 defineProps<Props>();
 
 const emit = defineEmits<{
-    submit: [key: keyof Store, value: unknown];
+    submit: [key: keyof Store, value: Store[keyof Store]];
     back: [];
 }>();
 
 function onSubmit<T extends keyof Store>(key: T, value: unknown) {
-    emit("submit", key, value);
+    emit("submit", key, value as Store[T]);
 }
 </script>
 
