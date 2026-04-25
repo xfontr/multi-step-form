@@ -4,5 +4,11 @@
         "subHeading": "Comida natural para perros, completa y equilibrada. Elaborada por nutricionistas",
         "inputPlaceholder": "¿Qué raza es tu peludo?",
         "cta": "Crea su menú"
+    },
+    "register": {
+        "heading": "Empecemos",
+        "form": {
+            "steps": ["Naranja", "Manzana", "Plátano"]
+        }
     }
 }

@@ -1,5 +1,46 @@
 {
     "landing": {
-        "cta": "Create your menu"
+        "heading": "Put real food in your dog's bowl",
+        "subHeading": "Natural dog food, complete and balanced. Crafted by nutritionists",
+        "inputPlaceholder": "What breed is your furry friend?",
+        "cta": "Create their menu"
+    },
+    "register": {
+        "heading": "Let's get started",
+        "description": "Fill the details below",
+        "steps": ["Name", "Age", "Weight"],
+        "race": {
+            "placeholder": "Pick a race",
+            "submit": "Let's go"
+        },
+        "name": {
+            "placeholder": "Miskas",
+            "label": "Pet name",
+            "submit": "Continue"
+        }
+    },
+    "data": {
+        "breeds": [
+            "Labrador Retriever",
+            "German Shepherd",
+            "Golden Retriever",
+            "French Bulldog",
+            "Bulldog",
+            "Poodle",
+            "Beagle",
+            "Rottweiler",
+            "Dachshund",
+            "Siberian Husky",
+            "Border Collie",
+            "Shih Tzu",
+            "Cocker Spaniel",
+            "Doberman Pinscher",
+            "Australian Shepherd",
+            "Great Dane",
+            "Chihuahua",
+            "Boxer",
+            "Pomeranian",
+            "Maltese"
+        ]
     }
 }
