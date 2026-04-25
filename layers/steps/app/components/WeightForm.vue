@@ -8,7 +8,7 @@ interface Props {
 
 defineProps<Props>();
 
-const emit = defineEmits<{ submit: [number | undefined] }>();
+const emit = defineEmits<{ submit: [number] }>();
 </script>
 
 <template>

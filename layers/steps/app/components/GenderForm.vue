@@ -12,30 +12,27 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{ submit: [string] }>();
 
+const MAX_GENDERS = 2;
+
 const { tm } = useI18nArray();
 
-function validate(value?: string): boolean {
-    return Boolean(value);
-}
-
 const options = computed<[string, string]>(
-    () => tm("data.genres").slice(0, 2) as [string, string],
+    () => tm("data.genders", MAX_GENDERS) as [string, string],
 );
 </script>
 
 <template>
     <Form
         :initial-value
-        :validate
         @submit="(v) => emit('submit', v)"
     >
         <template #default="{ value }">
             <SelectOptions
                 v-model="value.current"
-                name="genre"
+                name="gender"
                 :options
             >
-                {{ $t("register.genre.label") }}
+                {{ $t("register.gender.label") }}
             </SelectOptions>
         </template>
     </Form>

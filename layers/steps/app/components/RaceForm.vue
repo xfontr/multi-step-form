@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
     initialValue: "",
 });
 
-const emit = defineEmits<{ submit: [string | undefined] }>();
+const emit = defineEmits<{ submit: [string] }>();
 
 const { tm } = useI18nArray();
 </script>

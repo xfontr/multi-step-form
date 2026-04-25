@@ -9,7 +9,7 @@ interface Props {
 
 defineProps<Props>();
 
-const emit = defineEmits<{ submit: [number | undefined] }>();
+const emit = defineEmits<{ submit: [number] }>();
 
 function level(value: number) {
     if (value <= LOW_ACTIVITY) return "low";
@@ -24,10 +24,7 @@ function level(value: number) {
         @submit="(v) => emit('submit', v)"
     >
         <template #default="{ value }">
-            <Slider
-                v-model="value.current"
-                :placeholder="$t('register.exercise.placeholder')"
-            >
+            <Slider v-model="value.current">
                 {{ $t("register.exercise.label") }}
             </Slider>
 

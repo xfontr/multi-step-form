@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
     validate: (value?: UnwrapRef<T>) => Boolean(value),
 });
 
-const emit = defineEmits<{ submit: [UnwrapRef<T> | undefined] }>();
+const emit = defineEmits<{ submit: [UnwrapRef<T>] }>();
 
 const value = ref<{ current: T | undefined }>({ current: props.initialValue });
 
@@ -21,7 +21,7 @@ const isValid = computed<boolean>(() => {
 
 function onSubmit(): void {
     if (!isValid.value) return;
-    emit("submit", value.value.current);
+    emit("submit", value.value.current!);
 }
 </script>
 

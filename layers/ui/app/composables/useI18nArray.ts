@@ -5,8 +5,13 @@ type I18nArray = {
 function useI18nArray() {
     const i18n = useI18n();
 
-    function tm(key: string): string[] {
-        return (i18n.tm(key) as I18nArray).map(({ loc }) => loc.source);
+    /**
+     * @param key i18n key
+     * @param maxLength Limits the length of the array. Recommended to prevent unexpected behaviour upon translation updates
+     */
+    function tm(key: string, maxLength?: number): string[] {
+        const list = (i18n.tm(key) as I18nArray).map(({ loc }) => loc.source);
+        return maxLength ? list.slice(0, maxLength) : list;
     }
 
     return { tm };
