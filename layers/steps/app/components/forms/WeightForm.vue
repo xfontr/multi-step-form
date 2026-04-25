@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import InputNumber from "#layers/ui/app/components/InputNumber.vue";
-import Form from "./Form.vue";
+import Form from "../Form.vue";
 
 interface Props {
     initialValue?: number;
