@@ -6,7 +6,7 @@ const useGroupStore = defineStore(
         const { groups } = useRuntimeConfig().public.analytics;
 
         const group = ref<AnalyticsGroup | undefined>(
-            pickAnalyticsGroup(groups),
+            pickAnalyticsGroup(groups as AnalyticsGroup[]),
         );
 
         return { group: readonly(group) };
