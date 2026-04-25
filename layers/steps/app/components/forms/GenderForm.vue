@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
-import Form from "./Form.vue";
+import Form from "../Form.vue";
 
 interface Props {
     initialValue?: string;

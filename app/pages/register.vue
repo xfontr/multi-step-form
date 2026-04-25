@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import type { Diet } from "#layers/steps/app/types/Diet";
+import type { StepNode } from "#layers/steps/app/types/StepNode";
 import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
+import Steps from "#layers/steps/app/components/Steps.vue";
 import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import useDietStore from "#layers/steps/app/stores/diet";
 import useFlowStore from "#layers/steps/app/stores/flow";
-import form from "#layers/steps/form";
-import Button from "#layers/ui/app/components/Button.vue";
+import steps from "#layers/steps/steps";
 import Header from "#layers/ui/app/components/Header.vue";
-import Stepper from "#layers/ui/app/components/Stepper.vue";
 
 const { tm } = useI18nArray();
 
@@ -17,15 +17,17 @@ const { updateStep, init } = useUsageStore();
 const flow = useFlowStore();
 const { group } = useGroupStore();
 
-const steps = computed<string[]>(() => {
+const nodes = computed<StepNode<Diet>[]>(() => {
     const allSteps = tm("register.steps") as string[];
-    return allSteps.filter((_, index) => !group.stepsSkip?.includes(index));
+    const skipSet = new Set(group.stepsSkip ?? []);
+
+    return steps.flatMap((node, i) =>
+        skipSet.has(i) ? [] : { ...node, name: allSteps[i] },
+    );
 });
 
-const { previous, next, index } = useQueryStepper(steps);
-
-const nodes = computed(() =>
-    form.filter((_, index) => !group.stepsSkip?.includes(index)),
+const { previous, next, index } = useQueryStepper(
+    nodes.value.map(({ name }) => name!),
 );
 
 function onSubmit<K extends keyof Diet>(key: K, value: unknown) {
@@ -56,28 +58,14 @@ onMounted(() => {
             </template>
         </Header>
 
-        <Stepper :index>
-            <template
-                v-for="({ key, is }, i) in nodes"
-                #[steps[i]]
-                :key
-            >
-                <component
-                    :is
-                    :initial-value="diet[key]"
-                    @submit="(value: unknown) => onSubmit(key, value)"
-                />
-            </template>
-
-            <template #back>
-                <Button
-                    :label="$t('commons.back')"
-                    severity="secondary"
-                    class="register__back"
-                    @click="onPrevious"
-                />
-            </template>
-        </Stepper>
+        <Steps
+            class="register__steps"
+            :store="diet"
+            :nodes
+            :index
+            @submit="onSubmit"
+            @back="onPrevious"
+        />
     </section>
 </template>
 
@@ -94,43 +82,23 @@ onMounted(() => {
         height: 20vh;
     }
 
-    &__back {
-        margin: 0 auto;
-        position: absolute !important; // Workarounds primevue style attributes
-        left: 0;
-        bottom: 0;
-        width: 45%;
-    }
-
-    &:has(.register__back) {
-        :deep(.form__submit) {
+    &__steps {
+        :deep(.steps__back) {
+            margin: 0 auto;
             position: absolute !important; // Workarounds primevue style attributes
-            right: 0;
+            left: 0;
             bottom: 0;
             width: 45%;
         }
+
+        &:has(.steps__back) {
+            :deep(.form__submit) {
+                position: absolute !important; // Workarounds primevue style attributes
+                right: 0;
+                bottom: 0;
+                width: 45%;
+            }
+        }
     }
-}
-
-:deep(.stepper__panel) {
-    min-height: 40vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: beige;
-}
-
-:deep(.stepper__steps) {
-    padding: 0 $distances-m;
-}
-
-:deep(.stepper__content) {
-    width: 50%;
-}
-
-:deep(.form) {
-    min-height: 30vh;
 }
 </style>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import InputText from "#layers/ui/app/components/InputText.vue";
-import Form from "./Form.vue";
+import Form from "../Form.vue";
 
 interface Props {
     initialValue?: string;

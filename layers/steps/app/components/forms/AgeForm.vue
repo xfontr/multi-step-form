@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import InputNumber from "#layers/ui/app/components/InputNumber.vue";
 import Message from "#layers/ui/app/components/Message.vue";
-import { DOG_YEARS } from "../configs/constants";
-import Form from "./Form.vue";
+import { DOG_YEARS } from "../../configs/constants";
+import Form from "../Form.vue";
 
 interface Props {
     initialValue?: number;

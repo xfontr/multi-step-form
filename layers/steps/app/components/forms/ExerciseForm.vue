@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Slider from "#layers/ui/app/components/Slider.vue";
-import { HIGH_ACTIVITY, LOW_ACTIVITY } from "../configs/constants";
-import Form from "./Form.vue";
+import { HIGH_ACTIVITY, LOW_ACTIVITY } from "../../configs/constants";
+import Form from "../Form.vue";
 
 interface Props {
     initialValue?: number;

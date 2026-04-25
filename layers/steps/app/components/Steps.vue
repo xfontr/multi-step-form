@@ -1,0 +1,84 @@
+<script
+    lang="ts"
+    setup
+    generic="
+        Store extends {
+            [K in keyof Store]: string | number | boolean | undefined;
+        }
+    "
+>
+import type { StepNode } from "../types/StepNode";
+import Button from "#layers/ui/app/components/Button.vue";
+import Stepper from "#layers/ui/app/components/Stepper.vue";
+
+interface Props {
+    nodes: StepNode<Store>[];
+    store: Store;
+    index: number;
+}
+
+defineProps<Props>();
+
+const emit = defineEmits<{
+    submit: [key: keyof Store, value: unknown];
+    back: [];
+}>();
+
+function onSubmit<T extends keyof Store>(key: T, value: unknown) {
+    emit("submit", key, value);
+}
+</script>
+
+<template>
+    <Stepper
+        class="steps"
+        :index
+    >
+        <template
+            v-for="{ key, is, name } in nodes"
+            #[name]
+            :key
+        >
+            <component
+                :is
+                :initial-value="store[key]"
+                @submit="(value: unknown) => onSubmit(key, value)"
+            />
+        </template>
+
+        <template #back>
+            <Button
+                :label="$t('commons.back')"
+                severity="secondary"
+                class="steps__back"
+                @click="emit('back')"
+            />
+        </template>
+    </Stepper>
+</template>
+
+<style lang="scss" scoped>
+@use "#layers/ui/app/assets/scss/index" as *;
+
+:deep(.stepper__panel) {
+    min-height: 40vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+}
+
+:deep(.stepper__steps) {
+    padding: 0 $distances-m;
+}
+
+:deep(.stepper__content) {
+    width: 50%;
+}
+
+:deep(.form) {
+    min-height: 30vh;
+}
+</style>
