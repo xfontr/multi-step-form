@@ -15,6 +15,7 @@ const useUsageStore = defineStore(
 
         const usage = reactive<Usage>({
             group: group.name,
+            stepsSkipped: group.stepsSkip?.length ?? 0,
             id: "",
             completion: 0,
             success: false,
