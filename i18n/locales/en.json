@@ -8,7 +8,7 @@
     "register": {
         "heading": "Let's get started",
         "description": "Fill the details below",
-        "steps": ["Name", "Genre", "Age", "Weight", "Exercise"],
+        "steps": ["Name", "Gender", "Age", "Weight", "Exercise", "Pathology"],
         "race": {
             "placeholder": "Pick a race",
             "submit": "Let's go"
@@ -17,7 +17,7 @@
             "placeholder": "Miskas",
             "label": "Pet name"
         },
-        "genre": {
+        "gender": {
             "label": "We want to learn more about your pet"
         },
         "age": {
@@ -37,11 +37,16 @@
                 "medium": "Normal",
                 "high": "Very active"
             }
+        },
+        "pathology": {
+            "label": "Does your dog have any pathologies?"
         }
     },
     "commons": {
         "back": "Back",
-        "continue": "Continue"
+        "continue": "Continue",
+        "yes": "Yes",
+        "no": "No"
     },
     "data": {
         "breeds": [
@@ -66,6 +71,6 @@
             "Pomeranian",
             "Maltese"
         ],
-        "genres": ["Boy", "Girl"]
+        "genders": ["Boy", "Girl"]
     }
 }

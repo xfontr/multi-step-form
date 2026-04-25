@@ -6,10 +6,11 @@ const useDietStore = defineStore(
         const diet = reactive<Diet>({
             race: "",
             name: "",
-            genre: "",
+            gender: "",
             age: undefined,
             weight: undefined,
             exercise: 0,
+            pathology: "",
         });
 
         return { diet };

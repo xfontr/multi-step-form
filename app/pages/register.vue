@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import type { Diet } from "#layers/steps/app/types/Diet";
 import ExerciseForm from "#layers/steps/app/components/ExerciseForm.vue";
-import GenreForm from "#layers/steps/app/components/GenreForm.vue";
+import GenderForm from "#layers/steps/app/components/GenderForm.vue";
 import NameForm from "#layers/steps/app/components/NameForm.vue";
+import PatologyForm from "#layers/steps/app/components/PathologyForm.vue";
 import WeightForm from "#layers/steps/app/components/WeightForm.vue";
 import useDietStore from "#layers/steps/app/stores/diet";
 import Button from "#layers/ui/app/components/Button.vue";
@@ -24,10 +25,11 @@ function onSubmit<K extends keyof Diet>(key: K) {
 }
 
 const onSubmitName = onSubmit("name");
-const onSubmitGenre = onSubmit("genre");
+const onSubmitGender = onSubmit("gender");
 const onSubmitAge = onSubmit("age");
 const onSubmitWeight = onSubmit("weight");
 const onSubmitExercise = onSubmit("exercise");
+const onSubmitPathology = onSubmit("pathology");
 </script>
 
 <template>
@@ -51,9 +53,9 @@ const onSubmitExercise = onSubmit("exercise");
             </template>
 
             <template #[steps[1]]>
-                <GenreForm
-                    :initial-value="diet.genre"
-                    @submit="onSubmitGenre"
+                <GenderForm
+                    :initial-value="diet.gender"
+                    @submit="onSubmitGender"
                 />
             </template>
 
@@ -75,6 +77,13 @@ const onSubmitExercise = onSubmit("exercise");
                 <ExerciseForm
                     :initial-value="diet.exercise"
                     @submit="onSubmitExercise"
+                />
+            </template>
+
+            <template #[steps[5]]>
+                <PatologyForm
+                    :initial-value="diet.pathology"
+                    @submit="onSubmitPathology"
                 />
             </template>
 

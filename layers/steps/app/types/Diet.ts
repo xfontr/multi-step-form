@@ -1,8 +1,9 @@
 export interface Diet {
     race: string;
     name: string;
-    genre: string;
+    gender: string;
     age: number | undefined;
     weight: number | undefined;
     exercise: number;
+    pathology: string;
 }

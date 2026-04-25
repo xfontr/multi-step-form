@@ -10,32 +10,33 @@ withDefaults(defineProps<Props>(), {
     initialValue: "",
 });
 
-const emit = defineEmits<{ submit: [string] }>();
+const emit = defineEmits<{ submit: [boolean] }>();
 
-const { tm } = useI18nArray();
+const { t } = useI18n();
 
-function validate(value?: string): boolean {
-    return Boolean(value);
+const options = computed<[string, string]>(() => [
+    t("commons.yes"),
+    t("commons.no"),
+]);
+
+function onSubmit(value: string | number) {
+    const [trueText] = options.value;
+    emit("submit", value === trueText);
 }
-
-const options = computed<[string, string]>(
-    () => tm("data.genres").slice(0, 2) as [string, string],
-);
 </script>
 
 <template>
     <Form
         :initial-value
-        :validate
-        @submit="(v) => emit('submit', v)"
+        @submit="onSubmit"
     >
         <template #default="{ value }">
             <SelectOptions
                 v-model="value.current"
-                name="genre"
+                name="pathology"
                 :options
             >
-                {{ $t("register.genre.label") }}
+                {{ $t("register.pathology.label") }}
             </SelectOptions>
         </template>
     </Form>

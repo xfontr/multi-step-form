@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Select from "#layers/ui/app/components/Select.vue";
+import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
 import Form from "./Form.vue";
 
 interface Props {
@@ -12,7 +12,13 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{ submit: [string] }>();
 
+const MAX_GENDERS = 2;
+
 const { tm } = useI18nArray();
+
+const options = computed<[string, string]>(
+    () => tm("data.genders", MAX_GENDERS) as [string, string],
+);
 </script>
 
 <template>
@@ -21,21 +27,13 @@ const { tm } = useI18nArray();
         @submit="(v) => emit('submit', v)"
     >
         <template #default="{ value }">
-            <Select
+            <SelectOptions
                 v-model="value.current"
-                :options="tm('data.breeds')"
-                :placeholder="$t('register.race.placeholder')"
-            />
+                name="gender"
+                :options
+            >
+                {{ $t("register.gender.label") }}
+            </SelectOptions>
         </template>
     </Form>
 </template>
-
-<style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
-
-.race-form {
-    display: flex;
-    flex-direction: column;
-    gap: $distances-s;
-}
-</style>

@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
     initialValue: "",
 });
 
-const emit = defineEmits<{ submit: [string | undefined] }>();
+const emit = defineEmits<{ submit: [string] }>();
 
 function validate(value?: string): boolean {
     return /^\D{2,}$/.test(value?.trim() ?? "");
