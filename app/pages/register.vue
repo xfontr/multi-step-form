@@ -1,33 +1,37 @@
 <script lang="ts" setup>
 import type { Diet } from "#layers/steps/app/types/Diet";
+import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
-import ExerciseForm from "#layers/steps/app/components/ExerciseForm.vue";
-import GenderForm from "#layers/steps/app/components/GenderForm.vue";
-import NameForm from "#layers/steps/app/components/NameForm.vue";
-import PatologyForm from "#layers/steps/app/components/PathologyForm.vue";
-import WeightForm from "#layers/steps/app/components/WeightForm.vue";
 import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import useDietStore from "#layers/steps/app/stores/diet";
 import useFlowStore from "#layers/steps/app/stores/flow";
+import form from "#layers/steps/form";
 import Button from "#layers/ui/app/components/Button.vue";
 import Header from "#layers/ui/app/components/Header.vue";
 import Stepper from "#layers/ui/app/components/Stepper.vue";
 
 const { tm } = useI18nArray();
+
 const { diet } = useDietStore();
 const { updateStep, init } = useUsageStore();
 const flow = useFlowStore();
+const { group } = useGroupStore();
 
-const steps = computed<string[]>(() => tm("register.steps"));
+const steps = computed<string[]>(() => {
+    const allSteps = tm("register.steps") as string[];
+    return allSteps.filter((_, index) => !group.stepsSkip?.includes(index));
+});
 
 const { previous, next, index } = useQueryStepper(steps);
 
-function onSubmit<K extends keyof Diet>(key: K) {
-    return (value: Diet[K]) => {
-        diet[key] = value;
-        next();
-        updateStep(flow.index);
-    };
+const nodes = computed(() =>
+    form.filter((_, index) => !group.stepsSkip?.includes(index)),
+);
+
+function onSubmit<K extends keyof Diet>(key: K, value: unknown) {
+    diet[key] = value as Diet[K];
+    next();
+    updateStep(flow.index);
 }
 
 function onPrevious() {
@@ -36,15 +40,8 @@ function onPrevious() {
 }
 
 onMounted(() => {
-    init(FLOW_TOTAL_STEPS);
+    init(FLOW_TOTAL_STEPS - (group.stepsSkip?.length ?? 0));
 });
-
-const onSubmitName = onSubmit("name");
-const onSubmitGender = onSubmit("gender");
-const onSubmitAge = onSubmit("age");
-const onSubmitWeight = onSubmit("weight");
-const onSubmitExercise = onSubmit("exercise");
-const onSubmitPathology = onSubmit("pathology");
 </script>
 
 <template>
@@ -60,45 +57,15 @@ const onSubmitPathology = onSubmit("pathology");
         </Header>
 
         <Stepper :index>
-            <template #[steps[0]]>
-                <NameForm
-                    :initial-value="diet.name"
-                    @submit="onSubmitName"
-                />
-            </template>
-
-            <template #[steps[1]]>
-                <GenderForm
-                    :initial-value="diet.gender"
-                    @submit="onSubmitGender"
-                />
-            </template>
-
-            <template #[steps[2]]>
-                <AgeForm
-                    :initial-value="diet.age"
-                    @submit="onSubmitAge"
-                />
-            </template>
-
-            <template #[steps[3]]>
-                <WeightForm
-                    :initial-value="diet.weight"
-                    @submit="onSubmitWeight"
-                />
-            </template>
-
-            <template #[steps[4]]>
-                <ExerciseForm
-                    :initial-value="diet.exercise"
-                    @submit="onSubmitExercise"
-                />
-            </template>
-
-            <template #[steps[5]]>
-                <PatologyForm
-                    :initial-value="diet.pathology"
-                    @submit="onSubmitPathology"
+            <template
+                v-for="({ key, is }, i) in nodes"
+                #[steps[i]]
+                :key
+            >
+                <component
+                    :is
+                    :initial-value="diet[key]"
+                    @submit="(value: unknown) => onSubmit(key, value)"
                 />
             </template>
 

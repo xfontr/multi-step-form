@@ -1,5 +1,6 @@
 export interface Usage {
     group: string;
+    stepsSkipped: number;
     completion: number;
     id: string;
     success: boolean;
