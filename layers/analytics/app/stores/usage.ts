@@ -18,10 +18,19 @@ const useUsageStore = defineStore(
             id: "",
             completion: 0,
             success: false,
+            timestamps: {
+                init: 0,
+                success: 0,
+                total: 0,
+            },
         });
 
         function init(max: number): void {
             if (!usage.id) usage.id = crypto.randomUUID();
+
+            usage.timestamps.init = Date.now();
+            usage.timestamps.success = 0;
+            usage.timestamps.total = 0;
 
             maxStep.value = max;
 
@@ -36,6 +45,15 @@ const useUsageStore = defineStore(
             });
         }
 
+        function updateTimestamps(): void {
+            if (usage.success) usage.timestamps.success = Date.now();
+            usage.timestamps.total = Date.now() - usage.timestamps.init;
+        }
+
+        function updateSuccessStatus(): void {
+            usage.success = usage.completion === MAX_COMPLETION;
+        }
+
         function updateStep(step: number): void {
             usage.completion = getCompletion(
                 step,
@@ -43,12 +61,16 @@ const useUsageStore = defineStore(
                 completionRatePerStep.value,
             );
 
-            usage.success = usage.completion === MAX_COMPLETION;
-
+            updateSuccessStatus();
+            updateTimestamps();
             post();
         }
 
-        return { usage, init, updateStep };
+        function getUsage(): Readonly<Usage> {
+            return readonly(usage);
+        }
+
+        return { getUsage, init, updateStep };
     },
     { persist: { pick: ["usage"] } },
 );

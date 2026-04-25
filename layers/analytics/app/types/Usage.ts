@@ -3,4 +3,9 @@ export interface Usage {
     completion: number;
     id: string;
     success: boolean;
+    timestamps: {
+        init: number;
+        success: number;
+        total: number;
+    };
 }
