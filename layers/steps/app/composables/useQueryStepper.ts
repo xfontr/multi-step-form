@@ -1,6 +1,6 @@
 import { useStepper } from "@vueuse/core";
-import useFlowStore from "#layers/steps/app/stores/flow";
 import { FLOW_INITIAL_STEPS } from "../configs/constants";
+import useFlowStore from "../stores/flow";
 
 function useQueryStepper(steps: Ref<string[]>) {
     const flow = useFlowStore();
