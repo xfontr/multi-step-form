@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Diet } from "#layers/steps/app/types/Diet";
+import ExerciseForm from "#layers/steps/app/components/ExerciseForm.vue";
 import GenreForm from "#layers/steps/app/components/GenreForm.vue";
 import NameForm from "#layers/steps/app/components/NameForm.vue";
 import WeightForm from "#layers/steps/app/components/WeightForm.vue";
@@ -26,6 +27,7 @@ const onSubmitName = onSubmit("name");
 const onSubmitGenre = onSubmit("genre");
 const onSubmitAge = onSubmit("age");
 const onSubmitWeight = onSubmit("weight");
+const onSubmitExercise = onSubmit("exercise");
 </script>
 
 <template>
@@ -66,6 +68,13 @@ const onSubmitWeight = onSubmit("weight");
                 <WeightForm
                     :initial-value="diet.weight"
                     @submit="onSubmitWeight"
+                />
+            </template>
+
+            <template #[steps[4]]>
+                <ExerciseForm
+                    :initial-value="diet.exercise"
+                    @submit="onSubmitExercise"
                 />
             </template>
 
