@@ -1,17 +1,21 @@
 <script lang="ts" setup>
 import type { Diet } from "#layers/steps/app/types/Diet";
+import useUsageStore from "#layers/analytics/app/stores/usage";
 import ExerciseForm from "#layers/steps/app/components/ExerciseForm.vue";
 import GenderForm from "#layers/steps/app/components/GenderForm.vue";
 import NameForm from "#layers/steps/app/components/NameForm.vue";
 import PatologyForm from "#layers/steps/app/components/PathologyForm.vue";
 import WeightForm from "#layers/steps/app/components/WeightForm.vue";
 import useDietStore from "#layers/steps/app/stores/diet";
+import useFlowStore from "#layers/steps/app/stores/flow";
 import Button from "#layers/ui/app/components/Button.vue";
 import Header from "#layers/ui/app/components/Header.vue";
 import Stepper from "#layers/ui/app/components/Stepper.vue";
 
 const { tm } = useI18nArray();
 const { diet } = useDietStore();
+const { updateStep } = useUsageStore();
+const flow = useFlowStore();
 
 const steps = computed<string[]>(() => tm("register.steps"));
 
@@ -21,7 +25,13 @@ function onSubmit<K extends keyof Diet>(key: K) {
     return (value: Diet[K]) => {
         diet[key] = value;
         next();
+        updateStep(flow.index);
     };
+}
+
+function onPrevious() {
+    previous();
+    updateStep(flow.index);
 }
 
 const onSubmitName = onSubmit("name");
@@ -92,7 +102,7 @@ const onSubmitPathology = onSubmit("pathology");
                     :label="$t('commons.back')"
                     severity="secondary"
                     class="register__back"
-                    @click="previous"
+                    @click="onPrevious"
                 />
             </template>
         </Stepper>

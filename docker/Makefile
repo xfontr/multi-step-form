@@ -1,5 +1,5 @@
-IMAGE_NAME = portfolio
-CONTAINER_NAME = portfolio-container
+IMAGE_NAME = multi-step-form
+CONTAINER_NAME = multi-step-form-container
 DOCKER_PORT = 8080
 
 SETUP_SCRIPT = ./setup.sh

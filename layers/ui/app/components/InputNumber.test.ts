@@ -29,7 +29,7 @@ describe("input number component", () => {
 
         const input = wrapper.find("input-number-stub");
 
-        expect(input.attributes("id")).toBe("age");
+        expect(input.attributes("input-id")).toBe("age");
         expect(input.attributes("placeholder")).toBe("Enter age");
     });
 
