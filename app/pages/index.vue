@@ -1,21 +1,27 @@
 <script lang="ts" setup>
+import useUsageStore from "#layers/analytics/app/stores/usage";
 import RaceForm from "#layers/steps/app/components/RaceForm.vue";
+import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import useDietStore from "#layers/steps/app/stores/diet";
 import useFlowStore from "#layers/steps/app/stores/flow";
 import Card from "#layers/ui/app/components/Card.vue";
 import Header from "#layers/ui/app/components/Header.vue";
 
 const { diet } = useDietStore();
-const { up, update } = useFlowStore();
+const flow = useFlowStore();
+
+const usage = useUsageStore();
 
 function onSubmit(race: string): void {
     diet.race = race;
-    up();
+    flow.up();
+    usage.updateStep(flow.index);
     navigateTo("/register");
 }
 
 onMounted(() => {
-    update(0);
+    flow.update(0);
+    usage.init(FLOW_TOTAL_STEPS);
 });
 </script>
 
