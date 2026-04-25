@@ -1,30 +1,32 @@
 <script lang="ts" setup>
-import { IftaLabel, InputText } from "primevue";
+import { IftaLabel, InputNumber } from "primevue";
 
 interface Props {
     id: string;
+    placeholder?: string;
 }
 
 defineOptions({ inheritAttrs: false });
 
 defineProps<Props>();
 
-const model = defineModel<string>();
+const model = defineModel<number>();
 </script>
 
 <template>
-    <IftaLabel class="input">
-        <InputText
+    <IftaLabel class="input-number">
+        <InputNumber
             :id
             v-model="model"
-            class="input__field"
+            :placeholder
+            class="input-number__field"
         />
         <label :for="id"><slot /></label>
     </IftaLabel>
 </template>
 
 <style lang="scss" scoped>
-.input__field {
+.input-number__field {
     width: 100%;
 }
 </style>
