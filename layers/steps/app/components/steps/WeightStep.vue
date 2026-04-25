@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import InputNumber from "#layers/ui/app/components/InputNumber.vue";
-import Form from "../Form.vue";
+import Step from "../Step.vue";
 
 interface Props {
     initialValue?: number;
@@ -12,7 +12,7 @@ const emit = defineEmits<{ submit: [number] }>();
 </script>
 
 <template>
-    <Form
+    <Step
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
@@ -25,5 +25,5 @@ const emit = defineEmits<{ submit: [number] }>();
                 {{ $t("register.weight.label") }}
             </InputNumber>
         </template>
-    </Form>
+    </Step>
 </template>

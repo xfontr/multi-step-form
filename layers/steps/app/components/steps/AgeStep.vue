@@ -2,7 +2,7 @@
 import InputNumber from "#layers/ui/app/components/InputNumber.vue";
 import Message from "#layers/ui/app/components/Message.vue";
 import { DOG_YEARS } from "../../configs/constants";
-import Form from "../Form.vue";
+import Step from "../Step.vue";
 
 interface Props {
     initialValue?: number;
@@ -20,7 +20,7 @@ function dogYears(years: number) {
 </script>
 
 <template>
-    <Form
+    <Step
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
@@ -41,5 +41,5 @@ function dogYears(years: number) {
         <template #submit>
             {{ $t("register.age.submit") }}
         </template>
-    </Form>
+    </Step>
 </template>

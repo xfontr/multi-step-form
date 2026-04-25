@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import InputText from "#layers/ui/app/components/InputText.vue";
-import Form from "../Form.vue";
+import Step from "../Step.vue";
 
 interface Props {
     initialValue?: string;
@@ -18,7 +18,7 @@ function validate(value?: string): boolean {
 </script>
 
 <template>
-    <Form
+    <Step
         :validate
         :initial-value
         @submit="(v) => emit('submit', v)"
@@ -32,5 +32,5 @@ function validate(value?: string): boolean {
                 {{ $t("register.name.label") }}
             </InputText>
         </template>
-    </Form>
+    </Step>
 </template>

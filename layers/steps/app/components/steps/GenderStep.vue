@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
-import Form from "../Form.vue";
+import Step from "../Step.vue";
 
 interface Props {
     initialValue?: string;
@@ -22,7 +22,7 @@ const options = computed<[string, string]>(
 </script>
 
 <template>
-    <Form
+    <Step
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
@@ -35,5 +35,5 @@ const options = computed<[string, string]>(
                 {{ $t("register.gender.label") }}
             </SelectOptions>
         </template>
-    </Form>
+    </Step>
 </template>

@@ -1,6 +1,6 @@
 import type { Diet } from "../types/Diet";
 import type { StepNode } from "../types/StepNode";
-import steps from "../configs/steps";
+import steps from "../components/steps";
 
 function useStepNodes(list: string[], skip: number[]) {
     const nodes = computed<StepNode<Diet>[]>(() => {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Select from "#layers/ui/app/components/Select.vue";
-import Form from "../Form.vue";
+import Steps from "../Step.vue";
 
 interface Props {
     initialValue?: string;
@@ -16,7 +16,7 @@ const { tm } = useI18nArray();
 </script>
 
 <template>
-    <Form
+    <Steps
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
@@ -27,15 +27,5 @@ const { tm } = useI18nArray();
                 :placeholder="$t('register.race.placeholder')"
             />
         </template>
-    </Form>
+    </Steps>
 </template>
-
-<style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
-
-.race-form {
-    display: flex;
-    flex-direction: column;
-    gap: $distances-s;
-}
-</style>

@@ -79,7 +79,7 @@ function onPrevious() {
         }
 
         &:has(.steps__back) {
-            :deep(.form__submit) {
+            :deep(.step__submit) {
                 position: absolute !important; // Workarounds primevue style attributes
                 right: 0;
                 bottom: 0;

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Slider from "#layers/ui/app/components/Slider.vue";
 import { HIGH_ACTIVITY, LOW_ACTIVITY } from "../../configs/constants";
-import Form from "../Form.vue";
+import Step from "../Step.vue";
 
 interface Props {
     initialValue?: number;
@@ -19,7 +19,7 @@ function level(value: number) {
 </script>
 
 <template>
-    <Form
+    <Step
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
@@ -35,5 +35,5 @@ function level(value: number) {
                 {{ $t(`register.exercise.level.${level(value.current)}`) }}
             </Message>
         </template>
-    </Form>
+    </Step>
 </template>

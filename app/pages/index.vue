@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import useUsageStore from "#layers/analytics/app/stores/usage";
-import RaceForm from "#layers/steps/app/components/forms/RaceForm.vue";
+import RaceStep from "#layers/steps/app/components/steps/RaceStep.vue";
 import useDietStore from "#layers/steps/app/stores/diet";
 import useFlowStore from "#layers/steps/app/stores/flow";
 import Card from "#layers/ui/app/components/Card.vue";
@@ -36,7 +36,7 @@ onMounted(() => {
     </section>
 
     <Card class="cta">
-        <RaceForm
+        <RaceStep
             :initial-value="diet.race"
             @submit="onSubmit"
         />

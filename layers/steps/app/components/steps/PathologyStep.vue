@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
-import Form from "../Form.vue";
+import Steps from "../Step.vue";
 
 interface Props {
     initialValue?: boolean;
@@ -29,7 +29,7 @@ function onSubmit(value: string | number) {
 </script>
 
 <template>
-    <Form
+    <Steps
         :initial-value="toTextBoolean(initialValue)"
         @submit="onSubmit"
     >
@@ -42,5 +42,5 @@ function onSubmit(value: string | number) {
                 {{ $t("register.pathology.label") }}
             </SelectOptions>
         </template>
-    </Form>
+    </Steps>
 </template>
