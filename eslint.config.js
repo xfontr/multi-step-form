@@ -12,6 +12,7 @@ export default antfu({
     yaml: false,
     rules: {
         "antfu/if-newline": "off",
+        "antfu/consistent-list-newline": "off",
         "style/arrow-parens": "off",
         "import/consistent-type-specifier-style": "off",
     },
