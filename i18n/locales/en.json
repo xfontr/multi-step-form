@@ -17,7 +17,14 @@
             "placeholder": "Miskas",
             "label": "Pet name",
             "submit": "Continue"
+        },
+        "genre": {
+            "label": "We want to learn more about your pet",
+            "submit": "Continue"
         }
+    },
+    "commons": {
+        "back": "Back"
     },
     "data": {
         "breeds": [
@@ -41,6 +48,7 @@
             "Boxer",
             "Pomeranian",
             "Maltese"
-        ]
+        ],
+        "genres": ["Boy", "Girl"]
     }
 }

@@ -12,5 +12,6 @@ export default antfu({
     yaml: false,
     rules: {
         "antfu/if-newline": "off",
+        "style/arrow-parens": "off",
     },
 });

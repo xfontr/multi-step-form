@@ -32,11 +32,6 @@ function useQueryStepper(steps: Ref<string[]>) {
         updateQuery(index.value);
     }
 
-    function onSubmit(callback: () => void): void {
-        callback();
-        next();
-    }
-
     function trySetQueryStep(
         query: number | undefined,
         current: number,
@@ -73,7 +68,7 @@ function useQueryStepper(steps: Ref<string[]>) {
 
     return {
         previous,
-        onSubmit,
+        next,
         index: readonly(index),
     };
 }
