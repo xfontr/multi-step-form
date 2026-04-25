@@ -16,5 +16,6 @@ export default antfu({
         "style/arrow-parens": "off",
         "import/consistent-type-specifier-style": "off",
         "style/operator-linebreak": "off",
+        "style/indent": "off",
     },
 });
