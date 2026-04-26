@@ -9,7 +9,7 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{ submit: [string] }>();
 
-const { tm } = useI18nArray();
+const { tm } = useI18nArray(useRuntimeConfig().public.env === "production");
 </script>
 
 <template>

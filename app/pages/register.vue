@@ -8,7 +8,7 @@ import Steps from "#layers/steps/app/components/Steps.vue";
 import useStepsStore from "#layers/steps/app/stores/steps";
 import stepNodes from "~/steps";
 
-const { tm } = useI18nArray();
+const { tm } = useI18nArray(useRuntimeConfig().public.env === "production");
 
 const { diet } = useDietStore();
 const steps = useStepsStore();
