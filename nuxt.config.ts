@@ -14,7 +14,6 @@ export default defineNuxtConfig({
         "@primevue/nuxt-module",
         "@pinia/nuxt",
         "pinia-plugin-persistedstate/nuxt",
-        "@nuxtjs/storybook",
     ],
 
     i18n: {
@@ -30,6 +29,8 @@ export default defineNuxtConfig({
     pinia: {
         storesDirs: ["./app/stores/**", "./app/layers/**/app/stores/**"],
     },
+
+    piniaPluginPersistedstate: { storage: "localStorage" },
 
     primevue: {
         usePrimeVue: true,

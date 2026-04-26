@@ -1,5 +1,6 @@
 import { createPinia, setActivePinia } from "pinia";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import analyticsRepository from "../analytics.repository";
 import { MAX_COMPLETION } from "../configs/constants";
 import useUsageStore from "../stores/usage";
 
@@ -11,6 +12,16 @@ vi.mock("../stores/group", () => ({
         init: mockGroupInit,
     }),
 }));
+
+vi.mock("#shared/http", () => ({
+    HttpClient: vi.fn().mockImplementation(() => ({
+        get: vi.fn(),
+        post: vi.fn(),
+    })),
+    api: {},
+}));
+
+analyticsRepository.publish = vi.fn();
 
 vi.stubGlobal("crypto", {
     randomUUID: () => "test-uuid",

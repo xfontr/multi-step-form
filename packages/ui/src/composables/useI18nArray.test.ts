@@ -1,4 +1,3 @@
-import { mockNuxtImport } from "@nuxt/test-utils/runtime";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useI18n } from "vue-i18n";
 import useI18nArray from "./useI18nArray";
@@ -6,12 +5,6 @@ import useI18nArray from "./useI18nArray";
 const mockTm = vi.fn();
 
 vi.mock("vue-i18n");
-
-const { mockUseRuntimeConfig } = vi.hoisted(() => ({
-    mockUseRuntimeConfig: vi.fn().mockReturnValue({ public: { env: "" } }),
-}));
-
-mockNuxtImport(useRuntimeConfig, () => mockUseRuntimeConfig);
 
 vi.mocked(useI18n).mockReturnValue({
     tm: mockTm,
@@ -23,11 +16,9 @@ describe("useI18nArray", () => {
     });
 
     it("uses production behavior (returns raw array)", () => {
-        mockUseRuntimeConfig.mockReturnValue({ public: { env: "production" } });
-
         mockTm.mockReturnValue(["a", "b", "c"]);
 
-        const { tm } = useI18nArray();
+        const { tm } = useI18nArray(true);
 
         const result = tm("key");
 
@@ -35,11 +26,9 @@ describe("useI18nArray", () => {
     });
 
     it("limits length in production", () => {
-        mockUseRuntimeConfig.mockReturnValue({ public: { env: "production" } });
-
         mockTm.mockReturnValue(["a", "b", "c"]);
 
-        const { tm } = useI18nArray();
+        const { tm } = useI18nArray(true);
 
         const result = tm("key", 1);
 
@@ -47,16 +36,12 @@ describe("useI18nArray", () => {
     });
 
     it("maps loc.source in development", () => {
-        mockUseRuntimeConfig.mockReturnValue({
-            public: { env: "development" },
-        });
-
         mockTm.mockReturnValue([
             { loc: { source: "a" } },
             { loc: { source: "b" } },
         ]);
 
-        const { tm } = useI18nArray();
+        const { tm } = useI18nArray(false);
 
         const result = tm("key");
 
@@ -64,16 +49,12 @@ describe("useI18nArray", () => {
     });
 
     it("limits length in development", () => {
-        mockUseRuntimeConfig.mockReturnValue({
-            public: { env: "development" },
-        });
-
         mockTm.mockReturnValue([
             { loc: { source: "a" } },
             { loc: { source: "b" } },
         ]);
 
-        const { tm } = useI18nArray();
+        const { tm } = useI18nArray(false);
 
         const result = tm("key", 1);
 
@@ -81,13 +62,9 @@ describe("useI18nArray", () => {
     });
 
     it("returns empty array if tm returns null/undefined", () => {
-        mockUseRuntimeConfig.mockReturnValue({
-            public: { env: "development" },
-        });
-
         mockTm.mockReturnValue(undefined);
 
-        const { tm } = useI18nArray();
+        const { tm } = useI18nArray(false);
 
         const result = tm("key");
 

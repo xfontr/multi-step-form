@@ -1,10 +1,11 @@
+import { useI18n } from "#imports";
+
 type I18nArray = {
     loc: { source: string };
 }[];
 
-function useI18nArray() {
+function useI18nArray(isProd: boolean) {
     const i18n = useI18n();
-    const { env } = useRuntimeConfig().public;
 
     function productionTm(key: string, maxLength?: number) {
         const list = i18n.tm(key) ?? [];
@@ -16,7 +17,7 @@ function useI18nArray() {
      * @param maxLength Limits the length of the array. Recommended to prevent unexpected behaviour upon translation updates
      */
     function tm(key: string, maxLength?: number): string[] {
-        if (env === "production") return productionTm(key, maxLength);
+        if (isProd) return productionTm(key, maxLength);
 
         const list = ((i18n.tm(key) as I18nArray) ?? []).map(
             ({ loc }) => loc?.source,

@@ -1,19 +1,18 @@
 <script lang="ts" setup>
-import type { Diet } from "../types/Diet";
-import { Header, useI18nArray } from "@multi-step-form/ui";
+import { Header, Status, useI18nArray } from "@multi-step-form/ui";
 import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
+import useDiet from "#layers/diet/app/composables/useDiet";
+import useDietStore from "#layers/diet/app/stores/diet";
 import Steps from "#layers/steps/app/components/Steps.vue";
 import useStepsStore from "#layers/steps/app/stores/steps";
 import stepNodes from "~/steps";
-import useDietStore from "~/stores/diet";
 
-const { tm } = useI18nArray();
+const { tm } = useI18nArray(useRuntimeConfig().public.env === "production");
 
 const { diet } = useDietStore();
 const steps = useStepsStore();
 const groupStore = useGroupStore();
-
 const { updateStep } = useUsageStore();
 
 const { nodes, stepNames } = useStepNodes(
@@ -24,13 +23,15 @@ const { nodes, stepNames } = useStepNodes(
 
 const { previous, next, index } = useQueryStepper(stepNames);
 
-function onSubmit<K extends keyof Diet>(key: K, value: Diet[K]) {
+const { signUp, status } = useDiet();
+
+function onSubmit<K extends keyof Diet>(key: K, value: Diet[K]): void {
     diet[key] = value;
     next();
     updateStep(steps.index);
 }
 
-function onPrevious() {
+function onPrevious(): void {
     previous();
     updateStep(steps.index);
 }
@@ -49,13 +50,33 @@ function onPrevious() {
         </Header>
 
         <Steps
+            v-if="status === 'IDLE'"
             class="register__steps"
             :store="diet"
             :nodes
             :index
             @submit="onSubmit"
             @back="onPrevious"
+            @end="signUp"
         />
+
+        <Status :status>
+            <template #success>
+                <Message severity="success">
+                    {{ $t("register.success") }}
+                </Message>
+
+                <Button @click="useRestart">
+                    {{ $t("commons.restart") }}
+                </Button>
+            </template>
+
+            <template #error>
+                <Message severity="error">
+                    {{ $t("register.error") }}
+                </Message>
+            </template>
+        </Status>
     </section>
 </template>
 

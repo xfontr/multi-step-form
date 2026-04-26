@@ -8,7 +8,9 @@
     "register": {
         "heading": "Let's get started",
         "description": "Fill the details below",
-        "steps": ["Name", "Gender", "Age", "Weight", "Exercise", "Pathology"]
+        "steps": ["Name", "Gender", "Age", "Weight", "Exercise", "Pathology"],
+        "success": "Registration completed successfully. Check the server logs for more information",
+        "error": "Registration failed"
     },
     "step": {
         "breed": {
@@ -71,6 +73,7 @@
     "commons": {
         "back": "Back",
         "continue": "Continue",
+        "restart": "Restart",
         "yes": "Yes",
         "no": "No"
     }

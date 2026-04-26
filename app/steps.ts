@@ -1,5 +1,4 @@
 import type { StepNode } from "#layers/steps/app/types/StepNode";
-import type { Diet } from "./types/Diet";
 
 import BooleanStep from "#layers/steps/app/components/steps/BooleanStep.vue";
 import NumberStep from "#layers/steps/app/components/steps/NumberStep.vue";

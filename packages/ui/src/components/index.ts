@@ -8,6 +8,7 @@ import Section from "./Section.vue";
 import Select from "./Select.vue";
 import SelectOptions from "./SelectOptions.vue";
 import Slider from "./Slider.vue";
+import Status from "./Status.vue";
 import Stepper from "./Stepper.vue";
 
 export {
@@ -21,5 +22,6 @@ export {
     Select,
     SelectOptions,
     Slider,
+    Status,
     Stepper,
 };

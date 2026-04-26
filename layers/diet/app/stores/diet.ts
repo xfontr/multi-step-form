@@ -1,5 +1,3 @@
-import type { Diet } from "../types/Diet";
-
 const useDietStore = defineStore(
     "diet",
     () => {
