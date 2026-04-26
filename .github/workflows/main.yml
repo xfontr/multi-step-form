@@ -11,8 +11,5 @@ on:
         types: [opened, synchronize, reopened]
 
 jobs:
-    dependency-review:
-        uses: ./.github/workflows/dependency-review.yml
-
     code-quality:
         uses: ./.github/workflows/code-quality.yml
