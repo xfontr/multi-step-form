@@ -6,7 +6,7 @@ Run `$ make init`. Make sure you have Docker CLI installed, alongside with Docke
 
 ## Usage
 
-After the init, just make sure you keep refreshing the files, image and container by running `$ make refresh`.
+Use `$ make build` or `$ make run` to run specific steps of the build process. `$ make refresh` can be useful to clean everything up and restart.
 
 ## Setup
 
@@ -20,7 +20,8 @@ $ make init
 $ make init # Sets everything up
 $ make build # Builds image
 $ make run # Runs container
-$ make refresh # Delets old files and sets everything back up
+$ make log # Shows container last logs, useful for debugging
+$ make refresh # Delets old files and containers, and sets everything back up
 ```
 
 ### Recommendations
