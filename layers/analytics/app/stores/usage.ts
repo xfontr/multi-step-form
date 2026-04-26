@@ -1,11 +1,12 @@
 import type { Usage } from "../types/Usage";
+import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import { MAX_COMPLETION } from "../configs/constants";
 import useGroupStore from "./group";
 
 const useUsageStore = defineStore(
     "usage",
     () => {
-        const { group } = useGroupStore();
+        const groupStore = useGroupStore();
 
         const maxStep = ref<number>();
 
@@ -14,8 +15,8 @@ const useUsageStore = defineStore(
         });
 
         const usage = reactive<Usage>({
-            group: group.name,
-            stepsSkipped: group.stepsSkip?.length ?? 0,
+            group: "",
+            stepsSkipped: 0,
             id: "",
             completion: 0,
             success: false,
@@ -26,15 +27,22 @@ const useUsageStore = defineStore(
             },
         });
 
-        function init(max: number): void {
-            maxStep.value ??= max;
+        function setInitialValues(): void {
+            usage.id = createId();
+            usage.timestamps.init = Date.now();
+            usage.group = groupStore.group!.name!;
+            usage.stepsSkipped = groupStore.group!.stepsSkip?.length ?? 0;
+        }
+
+        function init(): void {
+            groupStore.init();
+
+            maxStep.value ??=
+                FLOW_TOTAL_STEPS - (groupStore.group!.stepsSkip?.length ?? 0);
 
             if (usage.id) return;
 
-            usage.id = crypto.randomUUID();
-            usage.timestamps.init = Date.now();
-
-            post();
+            setInitialValues();
         }
 
         function post(): Promise<void> {
