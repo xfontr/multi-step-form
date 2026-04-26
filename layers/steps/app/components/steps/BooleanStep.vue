@@ -27,6 +27,7 @@ function onSubmit(value: string | number) {
 
 <template>
     <Steps
+        :name
         :initial-value="toTextBoolean(initialValue)"
         @submit="onSubmit"
     >

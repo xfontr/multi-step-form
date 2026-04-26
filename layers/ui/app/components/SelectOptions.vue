@@ -2,10 +2,7 @@
 import { SelectButton } from "primevue";
 
 interface Props {
-    /**
-     * @description Maximum two options.
-     */
-    options: [string, string];
+    options: string[];
     name: string;
 }
 
@@ -19,6 +16,7 @@ const model = defineModel<string>();
         <span>
             <slot />
         </span>
+
         <SelectButton
             v-model="model"
             :name

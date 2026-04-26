@@ -1,10 +1,14 @@
 import { createPinia, setActivePinia } from "pinia";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { MAX_COMPLETION } from "../configs/constants";
 import useUsageStore from "../stores/usage";
+
+const mockGroupInit = vi.fn();
 
 vi.mock("../stores/group", () => ({
     default: () => ({
         group: { name: "TEST_GROUP", rate: 100 },
+        init: mockGroupInit,
     }),
 }));
 
@@ -21,7 +25,9 @@ describe("useUsageStore", () => {
     it("initializes usage correctly", () => {
         const store = useUsageStore();
 
-        store.init(5);
+        expect(mockGroupInit).toHaveBeenCalledTimes(0);
+
+        store.init();
 
         const { usage } = store;
 
@@ -29,25 +35,30 @@ describe("useUsageStore", () => {
         expect(usage.id).toBe("test-uuid");
         expect(usage.timestamps.init).toBe(Date.now());
         expect(usage.success).toBe(false);
+        expect(mockGroupInit).toHaveBeenCalledTimes(1);
+
+        store.init();
+
+        expect(mockGroupInit).toHaveBeenCalledTimes(2);
     });
 
     it("updates step and completion correctly", () => {
         const store = useUsageStore();
 
-        store.init(5);
+        store.init();
         store.updateStep(2);
 
         const { usage } = store;
 
-        expect(usage.completion).toBe(40);
+        expect(usage.completion).toBe(28.57);
         expect(usage.timestamps.total).toBeGreaterThanOrEqual(0);
     });
 
     it("marks success when completion reaches max", () => {
         const store = useUsageStore();
 
-        store.init(5);
-        store.updateStep(5);
+        store.init();
+        store.updateStep(MAX_COMPLETION);
 
         const { usage } = store;
 
@@ -60,7 +71,7 @@ describe("useUsageStore", () => {
 
         vi.setSystemTime(1000);
 
-        store.init(5);
+        store.init();
 
         const { init } = store.usage.timestamps;
 
@@ -72,7 +83,7 @@ describe("useUsageStore", () => {
         expect(total).toBe(1100 - init);
 
         vi.setSystemTime(1300);
-        store.updateStep(5);
+        store.updateStep(MAX_COMPLETION);
         const { usage } = store;
 
         expect(usage.timestamps.total).toBe(1300 - init);

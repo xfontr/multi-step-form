@@ -8,7 +8,7 @@ DOCKER_RUN_CMD = docker run -d -p $(DOCKER_PORT):$(DOCKER_PORT) --name $(CONTAIN
 
 .PHONY: all setup build run
 
-init: setup build run
+init: clean setup build run log
 
 setup:
 	@echo "Running setup script..."
@@ -22,9 +22,15 @@ run:
 	@echo "Running Docker container..."
 	$(DOCKER_RUN_CMD)
 
-refresh:
+clean:
 	@echo "Cleaning local app folder..."
 	- rm -rf ./app
+
+log:
+	docker logs multi-step-form-container
+
+refresh:
+	$(MAKE) clean
 
 	@echo "Stopping and removing Docker container..."
 	- docker stop $(CONTAINER_NAME)

@@ -13,10 +13,29 @@ const model = defineModel<string>();
 </script>
 
 <template>
-    <Select
-        v-model="model"
-        :editable
-        :options
-        :placeholder
-    />
+    <div class="select">
+        <span>
+            <slot />
+        </span>
+
+        <Select
+            v-model="model"
+            :editable
+            :options
+            fluid
+            :placeholder
+        />
+    </div>
 </template>
+
+<style lang="scss" scoped>
+@use "#layers/ui/app/assets/scss/index" as *;
+
+.select {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $distances-xs;
+    font-size: $fonts-size-small;
+}
+</style>

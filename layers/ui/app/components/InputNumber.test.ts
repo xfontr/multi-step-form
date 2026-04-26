@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mountPrimeVue } from "../test-utils/mount";
+import { mountPrimeVue } from "#shared/test-utils/mount";
 import InputNumberField from "./InputNumber.vue";
 
 describe("input number component", () => {

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-InstallBuildAndPack () {
+InstallAndBuild () {
   cd ..
   pnpm i
   pnpm build
@@ -10,14 +10,19 @@ InstallBuildAndPack () {
 CreateDefaultFolders() {
   cd docker
   mkdir app
+
   cd app
+  mkdir -p .husky
+  mkdir -p .output
 }
 
-CopyPnpm () {
+CopyRequiredFiles () {
   cp ../../package.json ./
   cp ../../pnpm-lock.yaml ./
+  cp -r ../../.output ./
+  cp ../../.husky/install.mjs ./.husky/
 }
 
-InstallBuildAndPack
+InstallAndBuild
 CreateDefaultFolders
-CopyPnpm
+CopyRequiredFiles

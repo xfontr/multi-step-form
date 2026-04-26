@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import type { Props } from "../../types/StepProps";
-import Select from "#layers/ui/app/components/Select.vue";
-import Steps from "../Step.vue";
+import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
+import Step from "../Step.vue";
 
-withDefaults(defineProps<Props>(), {
-    initialValue: "",
-});
+const props = defineProps<Props<string>>();
 
 const emit = defineEmits<{ submit: [string] }>();
 
@@ -13,19 +11,19 @@ const { tm } = useI18nArray();
 </script>
 
 <template>
-    <Steps
+    <Step
         :name
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
         <template #default="{ value }">
-            <Select
+            <SelectOptions
                 v-model="value.current"
-                :options="tm(`step.${name}.options`)"
-                :placeholder="$t(`step.${name}.placeholder`)"
+                :name
+                :options="tm(`step.${props.name}.options`)"
             >
                 {{ $t(`step.${name}.label`) }}
-            </Select>
+            </SelectOptions>
         </template>
-    </Steps>
+    </Step>
 </template>
