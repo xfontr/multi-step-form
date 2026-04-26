@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import useUsageStore from "~~/layers/analytics/app/stores/usage";
 
-const usage = useUsageStore();
+const { init } = useUsageStore();
 
-onMounted(() => {
-    usage.init();
-});
+onMounted(init);
 </script>
 
 <template>

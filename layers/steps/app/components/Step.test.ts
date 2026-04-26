@@ -12,12 +12,6 @@ type InputEventWithValue = InputEvent & {
 function render(props = {}) {
     return mountPrimeVue(Step, {
         props,
-        global: {
-            mocks: {
-                $t: (key: string) => key,
-                $te: () => false,
-            },
-        },
         slots: {
             default: ({ value }: { value: { current: unknown } }) =>
                 h("input", {

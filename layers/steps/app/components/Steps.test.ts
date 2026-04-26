@@ -28,11 +28,6 @@ function createMockStep() {
 function render(props: any) {
     return mountPrimeVue(Steps, {
         props,
-        global: {
-            mocks: {
-                $t: (k: string) => k,
-            },
-        },
     });
 }
 
