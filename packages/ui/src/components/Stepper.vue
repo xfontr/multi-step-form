@@ -1,12 +1,3 @@
-<!--
-[DEV-COMMENT]
-
-PrimeVue Stepper allows to handle the step logic from within.
-
-I opted out of it, since I found it to be quite limiting for
-abstract components such as the one below.
--->
-
 <script setup lang="ts">
 import { Step, StepList, StepPanel, StepPanels, Stepper } from "primevue";
 import { computed, useSlots } from "vue";
