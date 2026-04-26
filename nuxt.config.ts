@@ -47,7 +47,7 @@ export default defineNuxtConfig({
         },
     },
 
-    fonts: process.env.STORYBOOK
+    fonts: import.meta.env.STORYBOOK
         ? false
         : {
               defaults: {

@@ -1,5 +1,4 @@
-// Section.stories.ts
-import type { Meta, StoryObj } from "@nuxtjs/storybook";
+import type { Meta, StoryObj } from "@storybook/vue3";
 import Section from "./Section.vue";
 
 const meta: Meta<typeof Section> = {

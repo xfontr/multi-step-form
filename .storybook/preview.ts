@@ -1,9 +1,8 @@
 import type { Preview } from "@storybook/vue3";
-import { setup } from "@storybook/vue3";
 import Aura from "@primeuix/themes/aura";
-import "./preview.css";
-
+import { setup } from "@storybook/vue3";
 import PrimeVue from "primevue/config";
+import "./preview.css";
 
 setup((app) => {
     app.use(PrimeVue, {
