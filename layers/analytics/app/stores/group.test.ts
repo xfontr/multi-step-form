@@ -29,6 +29,10 @@ describe("useGroupStore", () => {
 
         const store = useGroupStore();
 
+        expect(store.group).toBeUndefined();
+
+        store.init();
+
         expect(store.group).toEqual(groupA);
     });
 
@@ -42,6 +46,8 @@ describe("useGroupStore", () => {
         });
 
         const store = useGroupStore();
+
+        store.init();
 
         expect(store.group).toEqual(DEFAULT_GROUP);
     });
