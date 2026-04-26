@@ -1,6 +1,6 @@
 <script lang="ts" setup generic="T extends string | number">
 import type { UnwrapRef } from "vue";
-import Button from "#layers/ui/app/components/Button.vue";
+import { Button } from "@multi-step-form/ui";
 
 interface Props {
     initialValue?: T;
@@ -49,7 +49,7 @@ const submitKey = `step.${props.name}.submit`;
 </template>
 
 <style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
+@use "@multi-step-form/ui/src/assets/scss/index" as *;
 
 .step {
     display: flex;

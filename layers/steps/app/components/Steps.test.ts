@@ -1,6 +1,6 @@
+import { mountPrimeVue } from "@multi-step-form/ui";
 import { describe, expect, it } from "vitest";
 import { defineComponent, h } from "vue";
-import { mountPrimeVue } from "#shared/test-utils/mount";
 import Steps from "./Steps.vue";
 
 function createMockStep() {

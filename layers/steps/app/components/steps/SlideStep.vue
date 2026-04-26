@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Props } from "../../types/StepProps";
-import Slider from "#layers/ui/app/components/Slider.vue";
+import { Slider } from "@multi-step-form/ui";
 import { HIGH_ACTIVITY, LOW_ACTIVITY } from "../../configs/constants";
 import Step from "../Step.vue";
 

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import useUsageStore from "~~/layers/analytics/app/stores/usage";
+import useUsageStore from "#layers/analytics/app/stores/usage";
 
 const { init } = useUsageStore();
 

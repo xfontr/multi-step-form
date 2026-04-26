@@ -1,6 +1,6 @@
+import { mountPrimeVue } from "@multi-step-form/ui";
 import { describe, expect, it, vi } from "vitest";
 import { h } from "vue";
-import { mountPrimeVue } from "#shared/test-utils/mount";
 import Step from "./Step.vue";
 
 type InputEventWithValue = InputEvent & {

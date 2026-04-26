@@ -1,10 +1,8 @@
 <script lang="ts" setup>
+import { Card, Header, Section } from "@multi-step-form/ui";
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import SelectStep from "#layers/steps/app/components/steps/SelectStep.vue";
 import useStepsStore from "#layers/steps/app/stores/steps";
-import Card from "#layers/ui/app/components/Card.vue";
-import Header from "#layers/ui/app/components/Header.vue";
-import Section from "#layers/ui/app/components/Section.vue";
 import useDietStore from "~/stores/diet";
 
 const { diet } = useDietStore();
@@ -48,7 +46,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
+@use "@multi-step-form/ui/src/assets/scss/index" as *;
 
 .hero {
     display: flex;

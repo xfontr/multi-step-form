@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Props } from "../../types/StepProps";
-import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
+import { SelectOptions } from "@multi-step-form/ui";
 import Steps from "../Step.vue";
 
 defineProps<Props<boolean>>();

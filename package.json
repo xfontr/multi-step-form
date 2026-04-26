@@ -19,6 +19,7 @@
         "test:e2e": "pnpm --filter @multi-step-form/e2e test"
     },
     "dependencies": {
+        "@multi-step-form/ui": "workspace:*",
         "@nuxt/eslint": "^1.15.2",
         "@nuxt/fonts": "^0.14.0",
         "@nuxtjs/i18n": "10.2.4",

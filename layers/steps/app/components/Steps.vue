@@ -8,9 +8,7 @@
     "
 >
 import type { StepNode } from "../types/StepNode";
-import Button from "#layers/ui/app/components/Button.vue";
-import Card from "#layers/ui/app/components/Card.vue";
-import Stepper from "#layers/ui/app/components/Stepper.vue";
+import { Button, Card, Stepper } from "@multi-step-form/ui";
 
 interface Props {
     nodes: Required<StepNode<Store>>[];
@@ -62,7 +60,7 @@ function onSubmit<T extends keyof Store>(key: T, value: unknown) {
 </template>
 
 <style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
+@use "@multi-step-form/ui/src/assets/scss/index" as *;
 
 :deep(.stepper__panel) {
     width: 100%;

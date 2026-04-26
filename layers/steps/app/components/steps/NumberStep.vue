@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { Props } from "../../types/StepProps";
-import InputNumber from "#layers/ui/app/components/InputNumber.vue";
-import Message from "#layers/ui/app/components/Message.vue";
+import { InputNumber, Message } from "@multi-step-form/ui";
 import Step from "../Step.vue";
 
 const props = defineProps<Props<number>>();

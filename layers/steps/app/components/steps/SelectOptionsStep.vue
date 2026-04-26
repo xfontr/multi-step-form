@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Props } from "../../types/StepProps";
-import SelectOptions from "#layers/ui/app/components/SelectOptions.vue";
+import { SelectOptions, useI18nArray } from "@multi-step-form/ui";
 import Step from "../Step.vue";
 
 const props = defineProps<Props<string>>();

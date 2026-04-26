@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import Aura from "@primeuix/themes/aura";
 
 export default defineNuxtConfig({
@@ -23,7 +24,7 @@ export default defineNuxtConfig({
         ],
     },
 
-    css: ["#layers/ui/app/assets/scss/index.scss"],
+    css: ["@multi-step-form/ui/src/assets/scss/index.scss"],
 
     pinia: {
         storesDirs: ["./app/stores/**", "./app/layers/**/app/stores/**"],
@@ -54,6 +55,25 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             env: import.meta.env.NODE_ENV,
+        },
+    },
+
+    vite: {
+        resolve: {
+            alias: {
+                "@multi-step-form/ui": fileURLToPath(
+                    new URL(
+                        "./node_modules/@multi-step-form/ui",
+                        import.meta.url,
+                    ),
+                ),
+            },
+        },
+        ssr: {
+            noExternal: ["@multi-step-form/ui"],
+        },
+        optimizeDeps: {
+            include: ["@multi-step-form/ui", "@vueuse/core"],
         },
     },
 });
