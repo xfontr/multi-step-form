@@ -17,6 +17,7 @@ function level(value: number) {
 
 <template>
     <Step
+        :name
         :initial-value
         @submit="(v) => emit('submit', v)"
     >

@@ -14,6 +14,7 @@ const { tm } = useI18nArray();
 
 <template>
     <Steps
+        :name
         :initial-value
         @submit="(v) => emit('submit', v)"
     >
@@ -22,7 +23,9 @@ const { tm } = useI18nArray();
                 v-model="value.current"
                 :options="tm(`step.${name}.options`)"
                 :placeholder="$t(`step.${name}.placeholder`)"
-            />
+            >
+                {{ $t(`step.${name}.label`) }}
+            </Select>
         </template>
     </Steps>
 </template>

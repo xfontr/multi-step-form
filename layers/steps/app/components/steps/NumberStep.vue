@@ -11,12 +11,13 @@ const emit = defineEmits<{ submit: [number] }>();
 const messageKey = `step.${props.name}.message`;
 
 function validate(value?: number): boolean {
-    return (value ?? 0) <= 60;
+    return value !== undefined && value !== null && value <= 60;
 }
 </script>
 
 <template>
     <Step
+        :name
         :initial-value
         :validate
         @submit="(v) => emit('submit', v)"

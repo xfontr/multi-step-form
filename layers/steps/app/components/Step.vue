@@ -5,6 +5,7 @@ import Button from "#layers/ui/app/components/Button.vue";
 interface Props {
     initialValue?: T;
     validate?: (value?: UnwrapRef<T>) => boolean;
+    name?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -23,6 +24,8 @@ function onSubmit(): void {
     if (!isValid.value) return;
     emit("submit", value.value.current!);
 }
+
+const submitKey = `step.${props.name}.submit`;
 </script>
 
 <template>
@@ -40,7 +43,7 @@ function onSubmit(): void {
             type="submit"
             :disabled="!isValid"
         >
-            {{ $t("commons.continue") }}
+            {{ $te(submitKey) ? $t(submitKey) : $t("commons.continue") }}
         </Button>
     </form>
 </template>

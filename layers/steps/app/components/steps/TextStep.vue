@@ -16,6 +16,7 @@ function validate(value?: string): boolean {
 
 <template>
     <Step
+        :name
         :validate
         :initial-value
         @submit="(v) => emit('submit', v)"
