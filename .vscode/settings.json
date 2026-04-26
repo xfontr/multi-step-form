@@ -1,8 +1,10 @@
 {
     "explorer.fileNesting.enabled": true,
+
     "explorer.fileNesting.patterns": {
         "*.ts": "${basename}.test.ts",
-        "*.vue": "${basename}.test.ts"
+        "*.vue": "${basename}.test.ts, ${basename}.stories.ts"
     },
+
     "explorer.fileNesting.expand": false
 }

@@ -29,7 +29,7 @@ const model = defineModel<string>();
 </template>
 
 <style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
+@use "@multi-step-form/ui/src/assets/scss/index" as *;
 
 .select {
     display: flex;

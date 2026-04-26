@@ -1,6 +1,6 @@
+import { mountPrimeVue } from "@multi-step-form/ui";
 import { shallowMount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
-import { mountPrimeVue } from "#shared/test-utils/mount";
 import SliderField from "./Slider.vue";
 
 describe("slider component", () => {

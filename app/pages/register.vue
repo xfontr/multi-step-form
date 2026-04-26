@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import type { Diet } from "../types/Diet";
+import { Header, useI18nArray } from "@multi-step-form/ui";
 import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import Steps from "#layers/steps/app/components/Steps.vue";
 import useStepsStore from "#layers/steps/app/stores/steps";
-import Header from "#layers/ui/app/components/Header.vue";
 import stepNodes from "~/steps";
 import useDietStore from "~/stores/diet";
 
@@ -60,7 +60,7 @@ function onPrevious() {
 </template>
 
 <style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
+@use "@multi-step-form/ui/src/assets/scss/index" as *;
 
 .register {
     display: flex;

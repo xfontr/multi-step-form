@@ -1,7 +1,7 @@
+import { mountComposable } from "@multi-step-form/ui";
 import { mockNuxtImport } from "@nuxt/test-utils/runtime";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ref } from "vue";
-import { mountComposable } from "#shared/test-utils/mountComposable";
 import useQueryStepper from "./useQueryStepper";
 
 const { route, push, navigateTo } = vi.hoisted(() => {

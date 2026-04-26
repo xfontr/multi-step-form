@@ -70,7 +70,7 @@ function onUpdateValue(value: string): void {
 </template>
 
 <style lang="scss" scoped>
-@use "#layers/ui/app/assets/scss/index" as *;
+@use "@multi-step-form/ui/src/assets/scss/index" as *;
 
 .stepper {
     display: flex;
