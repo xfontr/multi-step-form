@@ -1,5 +1,7 @@
-import type { Usage } from "../types/Usage";
+import type { ApiResponse } from "#shared/types/ApiResponse";
+import type { Usage } from "#shared/types/Usage";
 import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
+import repository from "../analytics.repository";
 import { MAX_COMPLETION } from "../configs/constants";
 import useGroupStore from "./group";
 
@@ -45,12 +47,8 @@ const useUsageStore = defineStore(
             setInitialValues();
         }
 
-        function post(): Promise<void> {
-            return new Promise((resolve) => {
-                // eslint-disable-next-line no-console
-                console.table(usage);
-                resolve();
-            });
+        function post(): Promise<ApiResponse> {
+            return repository.publish(usage);
         }
 
         function updateTimestamps(): void {

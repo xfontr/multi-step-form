@@ -8,7 +8,9 @@
     "register": {
         "heading": "Empecemos",
         "description": "Rellena los siguientes datos",
-        "steps": ["Nombre", "Género", "Edad", "Peso", "Ejercicio", "Patología"]
+        "steps": ["Nombre", "Género", "Edad", "Peso", "Ejercicio", "Patología"],
+        "success": "Registro completado exitosamente. Revisa los logs del servidor para más información",
+        "error": "Ha ocurrido un error durante el registro"
     },
     "step": {
         "breed": {
@@ -71,6 +73,7 @@
     "commons": {
         "back": "Atrás",
         "continue": "Continuar",
+        "restart": "Empezar de nuevo",
         "yes": "Sí",
         "no": "No"
     }
