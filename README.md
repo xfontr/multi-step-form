@@ -209,4 +209,4 @@ Please refer to [1] Summary for the most relevant architectural choices. Below a
 - **a11y -** I'm not satisfied with the outcome, Primevue does not ensure proper HTML semantics and some of their nodes could improve in terms of a11y.
 - **Why Primevue? -** No particular reason. Easy to set up. First time using it.
 - **Why a UI package if we already have Primevue? -** From a real world project perspective, this makes migrating from UI provider easily, and allows to limit the level of customization that the internal UI consumers can apply.
-- **UI package false modularity -** The UI package depends on dependencies provided by the root app: it's not a fully independent package. That is not necessarily bad in this project, but might be troublesome in a real world project.
+- **UI package false modularity -** The UI package relies on package.json dependencies provided by the root app: it's not a fully independent package. That is not necessarily bad in this project, but might be troublesome in a real world project.
