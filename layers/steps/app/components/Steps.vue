@@ -16,15 +16,22 @@ interface Props {
     index: number;
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
 const emit = defineEmits<{
     submit: [key: keyof Store, value: Store[keyof Store]];
+    end: [];
     back: [];
 }>();
 
+const disabled = ref<boolean>(false);
+
 function onSubmit<T extends keyof Store>(key: T, value: unknown) {
     emit("submit", key, value as Store[T]);
+
+    if (props.index !== props.nodes.length - 1) return;
+    emit("end");
+    disabled.value = true;
 }
 </script>
 
@@ -50,6 +57,7 @@ function onSubmit<T extends keyof Store>(key: T, value: unknown) {
 
         <template #back>
             <Button
+                :disabled
                 :label="$t('commons.back')"
                 severity="secondary"
                 class="steps__back"
