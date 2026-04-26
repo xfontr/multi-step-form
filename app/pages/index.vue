@@ -1,24 +1,9 @@
 <script lang="ts" setup>
 import { Card, Header, Section } from "@multi-step-form/ui";
-import useUsageStore from "#layers/analytics/app/stores/usage";
-import useDietStore from "#layers/diet/app/stores/diet";
 import SelectStep from "#layers/steps/app/components/steps/SelectStep.vue";
-import useStepsStore from "#layers/steps/app/stores/steps";
+import useLandingController from "~/composables/useLandingController";
 
-const { diet } = useDietStore();
-const flow = useStepsStore();
-const usage = useUsageStore();
-
-function onSubmit(breed: string): void {
-    diet.breed = breed;
-    flow.up();
-    usage.updateStep(flow.index);
-    navigateTo("/register");
-}
-
-onMounted(() => {
-    flow.update(0);
-});
+const { onSubmit, initialValue } = useLandingController();
 </script>
 
 <template>
@@ -40,7 +25,7 @@ onMounted(() => {
                  -->
                 <ClientOnly>
                     <SelectStep
-                        :initial-value="diet.breed ? diet.breed : undefined"
+                        :initial-value
                         name="breed"
                         @submit="onSubmit"
                     />
