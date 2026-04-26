@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
-import { mountPrimeVue } from "../test-utils/mount";
+import { mountPrimeVue } from "#shared/test-utils/mount";
 import MessageField from "./Message.vue";
 
 describe("message component", () => {

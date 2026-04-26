@@ -1,5 +1,6 @@
 import type BooleanStep from "../components/steps/BooleanStep.vue";
 import type NumberStep from "../components/steps/NumberStep.vue";
+import type SelectOptionsStep from "../components/steps/SelectOptionsStep.vue";
 import type TextStep from "../components/steps/TextStep.vue";
 
 export interface StepNode<
@@ -8,6 +9,7 @@ export interface StepNode<
     key: keyof Store;
     is: // string case
         | typeof TextStep
+        | typeof SelectOptionsStep
         // number case
         | typeof NumberStep
         // boolean case
