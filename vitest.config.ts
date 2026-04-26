@@ -4,7 +4,7 @@ import { configDefaults, coverageConfigDefaults } from "vitest/config";
 export default defineVitestConfig({
     test: {
         globals: false,
-        exclude: [...configDefaults.exclude, "dist/**/*"],
+        exclude: [...configDefaults.exclude, "dist/**/*", "**/playwright/**"],
         coverage: {
             provider: "v8",
             exclude: [...coverageConfigDefaults.exclude],

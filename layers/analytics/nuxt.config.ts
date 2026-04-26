@@ -7,11 +7,11 @@ export default defineNuxtConfig({
                 groups: [
                     {
                         name: "A",
-                        rate: 30,
+                        rate: 40,
                     },
                     {
                         name: "B",
-                        rate: 70,
+                        rate: 60,
                         stepsSkip: [5],
                     },
                 ] satisfies AnalyticsGroup[],

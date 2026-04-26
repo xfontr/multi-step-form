@@ -1,0 +1,18 @@
+{
+    "name": "@multi-step-form/e2e",
+    "version": "0.0.1",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "playwright test",
+        "install:browsers": "playwright install"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.6.5",
+    "devDependencies": {
+        "@playwright/test": "^1.59.1"
+    }
+}

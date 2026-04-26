@@ -15,7 +15,8 @@
         "format": "prettier --check .",
         "test": "vitest --watch=false",
         "test:dev": "vitest",
-        "test:coverage": "vitest --coverage.enabled --coverage.all"
+        "test:coverage": "vitest --coverage.enabled --coverage.all",
+        "test:e2e": "pnpm --filter @multi-step-form/e2e test"
     },
     "dependencies": {
         "@nuxt/eslint": "^1.15.2",
