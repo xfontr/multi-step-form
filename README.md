@@ -8,6 +8,7 @@
 - [2] Set up instructions
 - [3] Verify analytics functionality
 - [4] Extra
+- [5] Design considerations
 
 ---
 
@@ -196,5 +197,15 @@ Additionally:
 - Flow navigation ✅ The user can move backwards with a UI button + can use the query params to reload at a previous step.
 - Abstract multi-step form ✅ It's strictly decoupled from external logic.
 - Abstract group assignment ✅ The consumer can update the nuxt.config.ts file or the env variables and automatically create or delete groups,and change the skipped steps
+- Pipelines & Husky hooks ✅ Github actions to ensure that the code that reaches origin is good. Hooks to prevent pushing mistakes.
 
 ---
+
+## [5] Design considerations
+
+Please refer to [1] Summary for the most relevant architectural choices. Below are more specific considerations:
+
+- **a11y -** I'm not satisfied with the outcome, Primevue does not ensure proper HTML semantics and some of their nodes could improve in terms of a11y.
+- **Why Primevue? -** No particular reason. Easy to set up. First time using it.
+- **Why a UI package if we already have Primevue? -** From a real world project perspective, this makes migrating from UI provider easily, and allows to limit the level of customization that the internal UI consumers can apply.
+- **UI package false modularity -** The UI package depends on dependencies provided by the root app: it's not a fully independent package. That is not necessarily bad in this project, but might be troublesome in a real world project.
