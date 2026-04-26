@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     i18n: {
         defaultLocale: "es",
         locales: [
-            // { code: "es", name: "Spanish", file: "es.json" },
+            { code: "es", name: "Spanish", file: "es.json" },
             { code: "en", name: "English", file: "en.json" },
         ],
     },

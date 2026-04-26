@@ -1,8 +1,77 @@
 {
     "landing": {
-        "heading": "Pon comida de verdad en el bol de tu perro",
+        "heading": "Pon comida real en el plato de tu perro",
         "subHeading": "Comida natural para perros, completa y equilibrada. Elaborada por nutricionistas",
         "inputPlaceholder": "¿Qué raza es tu peludo?",
-        "cta": "Crea su menú"
+        "cta": "Crear su menú"
+    },
+    "register": {
+        "heading": "Empecemos",
+        "description": "Rellena los siguientes datos",
+        "steps": ["Nombre", "Género", "Edad", "Peso", "Ejercicio", "Patología"]
+    },
+    "step": {
+        "breed": {
+            "label": "Elige una raza",
+            "placeholder": "Bulldog",
+            "submit": "Vamos",
+            "options": [
+                "Labrador Retriever",
+                "Pastor Alemán",
+                "Golden Retriever",
+                "Bulldog Francés",
+                "Bulldog",
+                "Caniche",
+                "Beagle",
+                "Rottweiler",
+                "Teckel",
+                "Husky Siberiano",
+                "Border Collie",
+                "Shih Tzu",
+                "Cocker Spaniel",
+                "Doberman",
+                "Pastor Australiano",
+                "Gran Danés",
+                "Chihuahua",
+                "Bóxer",
+                "Pomerania",
+                "Maltés"
+            ]
+        },
+        "name": {
+            "label": "Nombre de la mascota",
+            "placeholder": "Miskas"
+        },
+        "gender": {
+            "label": "Queremos saber más sobre tu mascota",
+            "options": ["Macho", "Hembra"]
+        },
+        "age": {
+            "label": "¿Qué edad tiene tu perro?",
+            "placeholder": "12",
+            "submit": "¡Casi terminamos!",
+            "message": "Son {value} años repartiendo alegría :)"
+        },
+        "weight": {
+            "label": "¿Cuál es el peso de tu perro?",
+            "placeholder": "8"
+        },
+        "exercise": {
+            "label": "¿Tu perro es activo?",
+            "level": {
+                "low": "Poco activo",
+                "medium": "Normal",
+                "high": "Muy activo"
+            }
+        },
+        "pathology": {
+            "label": "¿Tu perro tiene alguna patología?"
+        }
+    },
+    "commons": {
+        "back": "Atrás",
+        "continue": "Continuar",
+        "yes": "Sí",
+        "no": "No"
     }
 }

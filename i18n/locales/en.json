@@ -12,7 +12,8 @@
     },
     "step": {
         "breed": {
-            "placeholder": "Pick a breed",
+            "label": "Pick a breed",
+            "placeholder": "Bulldog",
             "submit": "Let's go",
             "options": [
                 "Labrador Retriever",
