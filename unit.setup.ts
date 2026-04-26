@@ -4,3 +4,7 @@ config.global.mocks = {
     $t: (key: string) => key,
     $te: () => true,
 };
+
+config.global.stubs = {
+    ClientOnly: true,
+};

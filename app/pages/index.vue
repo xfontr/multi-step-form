@@ -1,25 +1,9 @@
 <script lang="ts" setup>
 import { Card, Header, Section } from "@multi-step-form/ui";
-import useUsageStore from "#layers/analytics/app/stores/usage";
-import useDietStore from "#layers/diet/app/stores/diet";
 import SelectStep from "#layers/steps/app/components/steps/SelectStep.vue";
-import useStepsStore from "#layers/steps/app/stores/steps";
+import useLandingController from "~/composables/useLandingController";
 
-const { diet } = useDietStore();
-const flow = useStepsStore();
-
-const usage = useUsageStore();
-
-function onSubmit(breed: string): void {
-    diet.breed = breed;
-    flow.up();
-    usage.updateStep(flow.index);
-    navigateTo("/register");
-}
-
-onMounted(() => {
-    flow.update(0);
-});
+const { onSubmit, initialValue } = useLandingController();
 </script>
 
 <template>
@@ -35,11 +19,17 @@ onMounted(() => {
             </Header>
 
             <Card class="hero__cta">
-                <SelectStep
-                    :initial-value="diet.breed"
-                    name="breed"
-                    @submit="onSubmit"
-                />
+                <!--
+                This prevents hydration mismatches when navigating back: the server will be undefined, but
+                the client will be populated by the persisted store. It's not an ideal workaround.
+                 -->
+                <ClientOnly>
+                    <SelectStep
+                        :initial-value
+                        name="breed"
+                        @submit="onSubmit"
+                    />
+                </ClientOnly>
             </Card>
         </div>
     </Section>
