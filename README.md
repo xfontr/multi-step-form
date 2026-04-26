@@ -45,7 +45,7 @@ Some global concerns still leak in (like i18n or Nuxt auto-imports), so it’s n
 
 But the trade-off is worth it:
 
-> 👍 Slight imperfections  
+> 👍 Slight imperfections
 > 🚀 Better scalability & maintainability than a potentially over-engineered strict DDD
 
 ---
@@ -62,7 +62,7 @@ Framework-agnostic building blocks used across the app:
 
 Originally, UI lived inside `layers/`, but:
 
-> ⚠️ Problem: Domains would horizontally depend on shared UI  
+> ⚠️ Problem: Domains would horizontally depend on shared UI
 > ➜ This broke clean separation principles
 
 So it was extracted into a standalone core package.
@@ -198,6 +198,7 @@ Additionally:
 - Abstract multi-step form ✅ It's strictly decoupled from external logic.
 - Abstract group assignment ✅ The consumer can update the nuxt.config.ts file or the env variables and automatically create or delete groups,and change the skipped steps
 - Pipelines & Husky hooks ✅ Github actions to ensure that the code that reaches origin is good. Hooks to prevent pushing mistakes.
+- Git: Trunk based development, semantic commit messages.
 
 ---
 
