@@ -15,5 +15,7 @@
         }
     ],
 
-    "files": []
+    "files": [],
+
+    "include": ["env.d.ts"]
 }

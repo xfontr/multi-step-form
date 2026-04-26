@@ -14,6 +14,7 @@ export default defineNuxtConfig({
         "@primevue/nuxt-module",
         "@pinia/nuxt",
         "pinia-plugin-persistedstate/nuxt",
+        "@nuxtjs/storybook",
     ],
 
     i18n: {
@@ -46,11 +47,13 @@ export default defineNuxtConfig({
         },
     },
 
-    fonts: {
-        defaults: {
-            weights: [300, 600, 900],
-        },
-    },
+    fonts: process.env.STORYBOOK
+        ? false
+        : {
+              defaults: {
+                  weights: [300, 600, 900],
+              },
+          },
 
     runtimeConfig: {
         public: {
