@@ -3,8 +3,10 @@ import completeLandingFlow from "../flows/completeLandingFlow";
 import SELECTORS from "../selectors/register";
 import { sleep } from "../utils/sleep";
 
+const FAKE_USERS = 10;
+
 test("analytics group assigning", async ({ browser }) => {
-    const loops = 10;
+    const loops = FAKE_USERS;
     let groupACount = 0;
     let groupBCount = 0;
 

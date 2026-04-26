@@ -1,57 +1,200 @@
-# Multi Step Form
+# 🚀 Multi Step Form
 
-This readme file has been personally written by me. AI was solely used to improve styling and small corrections.
+> 📌 This README was personally written by me. AI was only used for styling improvements and minor corrections.
 
-## Summary
+**Index**
 
-This should help to navigate this project :)
+- [1] Summary
+- [2] Set up instructions
+- [3] Verify analytics functionality
+- [4] Extra
 
-### 📂 app/ - Highest layer
+---
 
-Consumes the domains and renders the actual app.
+## 🧭 [1] Summary
 
-### 📂 layers/ - Domains
+A quick guide to understand the structure of this project and how everything is organized.
 
-Each of them may or may not contain:
+---
 
-- Domain specific UI components
-- Domain specific stores, utils, composables
-- When performing network requests, its own repository and endpoint dictionary.
-- Own types and configs
+### 📂 App Layer — `app/` (🏁 Highest Level)
 
-**Why?** This is Nuxt's intended way to handle diferent domains of logic.
+> 🎯 The entry point of the application
 
-Is it perfect? No, for example, i18n library permeates into each domain, as well as every other nuxt autoimport: in other words, they are not 100% strictly decoupled. However, the final balance is positive: the drawbacks from using the layers are lower than having a perfect/very-strict DDD decoupling.
+This layer **consumes the domains** and is responsible for rendering the actual app UI.
 
-### 📂 packages/ - Core
+---
 
-Completely agnostic packages that are consumed by the layers and even the main app:
+### 📂 Domains — `layers/` (🧩 Business Logic Split)
 
-- e2e testing
-- Design system and basic UI components (buttons, cards, etc.) with **Storybook**
+Each domain is isolated and may contain:
 
-**Why?** Originally, I had the UI placed in the layers/ folder. Problem: The domains would consume it horizontally (example: steps would consume UI, which would be at the same level). This would break the DDD, so I opted to externalise it.
+- 🎨 Domain-specific UI components
+- ⚙️ Stores, composables, and utilities
+- 🌐 Own repository layer + endpoint definitions (for API calls)
+- 🧠 Domain-specific types and configs
 
-Did this come with any extra benefits? Not really, as long as we don't intend to serve this UI package to other teams. But it makes the app closer to a real-world DDD case.
+#### ❓ Why this structure?
 
-### 📂 shared/
+This follows Nuxt’s intended architecture for separating concerns across different domains.
 
-As per Nuxt's docs: this folder is to serve both UI and server. Contains a few types and classes.
+**Is it perfect DDD? No.**
 
-**Why?** IMHO I could have created an extra packages/domain with the same content, but I opted for leveraging Nuxt's prefered architecture.
+Some global concerns still leak in (like i18n or Nuxt auto-imports), so it’s not 100% strictly isolated.
 
-### 📂 docker/
+But the trade-off is worth it:
 
-Self-explanatory :) Check docker/README.md for instructions.
+> 👍 Slight imperfections  
+> 🚀 Better scalability & maintainability than a potentially over-engineered strict DDD
 
-### 📂 server/
+---
 
-Not very relevant. Used simply to fake API calls.
+### 📦 Core Packages — `packages/` (🧱 Foundation)
 
-### 📂 i18n/
+Framework-agnostic building blocks used across the app:
 
-Self-explanatory :)
+- 🧪 E2E testing utilities
+- 🎨 Design system (UI components like buttons, cards, etc.)
+- 📚 Storybook for isolated UI development
 
-### 📂 .vscode/
+#### ❓ Why externalize this?
 
-These settings were **not** pushed accidentally. The purpose is to avoid creating many folders only for _test.ts_ and _stories.ts_ files. VS code settings allow to nest them without the extra folders.
+Originally, UI lived inside `layers/`, but:
+
+> ⚠️ Problem: Domains would horizontally depend on shared UI  
+> ➜ This broke clean separation principles
+
+So it was extracted into a standalone core package.
+
+#### 🧠 Was it worth it?
+
+Not strictly necessary unless shared externally, but:
+
+> 💡 It brings the project closer to real-world scalable architecture patterns
+
+---
+
+### 🔗 Shared — `shared/` (🌍 Cross-layer utilities)
+
+Nuxt-approved shared space for:
+
+- 🧩 Shared types
+- ⚙️ Utility classes
+- 🔄 Logic used by both client & server
+
+#### 💭 Design decision
+
+Could’ve been moved to a `packages/` module, but:
+
+> 🧭 Chosen approach: follow Nuxt’s preferred conventions instead of over-customizing
+
+---
+
+### 🐳 Docker — `docker/` (📦 Containerization)
+
+> 🧾 Self-explanatory
+
+Check `docker/README.md` for full setup instructions.
+
+---
+
+### 🖥️ Server — `server/` (🧪 Mock API layer)
+
+Not a core business piece.
+
+> 🧪 Used only to simulate API responses for development/testing purposes
+
+---
+
+### 🌐 i18n — `i18n/` (🌍 Localization)
+
+> 🧾 Self-explanatory
+
+---
+
+### 🧑‍💻 VS Code Config — `.vscode/` (🧹 Dev Experience)
+
+These settings are intentional and not accidental.
+
+#### 🎯 Purpose:
+
+- Prevent cluttered folder structures
+- Avoid creating extra directories just for:
+    - `*.test.ts`
+    - `*.stories.ts`
+
+---
+
+## Set up instructions
+
+### Local development set up
+
+**Requirements**
+
+- Recommended node version: v23.10.0
+- Recommended pnpm version: 10.6.5
+
+**Instructions**
+
+```bash
+# Install pnpm
+
+$ npm install -g pnpm@latest-10
+$ brew install pnpm # Alternative
+
+# Run dev server
+
+$ pnpm dev
+
+# Run local build
+
+$ pnpm build
+$ pnpm preview
+
+# Run tests, lint and storybook
+
+$ pnpm test && pnpm lint
+$ pnpm test:e2e
+$ pnpm storybook
+```
+
+### Containerization
+
+**Requirements**
+
+- Install docker
+
+**Instructions**
+
+```bash
+$ cd docker
+$ make init
+```
+
+---
+
+## [3] Verify analytics functionality
+
+**Options**:
+
+- **LOGS -** Run the project in local dev or in a container. The analytics (usage, assigned group, etc.) are logged in the server terminal.
+- **TESTS -** Run `$ pnpm test:e2e` - The analytics.test.ts suite creates 10 fake sessions and ensures that some have 5 steps, and others 6.
+- **MANUAL -** Run a session and complete the first step. You can see the available steps at the bottom. To run another session, open a new private window, or finish the flow and press "Restart".
+
+---
+
+## [4] Extra
+
+Additionally:
+
+- Production deployment 🇪🇸 [Multi Step Form - ES](https://cool-multi-step-form.netlify.app/).
+- Production deployment 🇬🇧 [Multi Step Form - EN](https://cool-multi-step-form.netlify.app/en).
+- Storybook ✅ - Covers UI package
+- Docker ✅
+- e2e tests with Playwright ✅ Covers: landing initial flow, most of the register flow, and iterate 10 different sessions to check if the group assignation works as expected
+- Data posting ✅ Usage and Diet data are actually sent to a fake API. The data is logged in the Server terminal ‼️
+- Flow navigation ✅ The user can move backwards with a UI button + can use the query params to reload at a previous step.
+- Abstract multi-step form ✅ It's strictly decoupled from external logic.
+- Abstract group assignment ✅ The consumer can update the nuxt.config.ts file or the env variables and automatically create or delete groups,and change the skipped steps
+
+---
