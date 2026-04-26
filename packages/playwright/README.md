@@ -26,6 +26,8 @@ $ pnpm run install:browsers
 Run all tests:
 
 ```zsh
+# ⚠️ The dev server ($ pnpm dev) needs to be running in a separate terminal
+
 $ pnpm test
 ```
 
