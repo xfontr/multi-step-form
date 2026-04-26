@@ -10,6 +10,14 @@ const { mockUseRuntimeConfig } = vi.hoisted(() => ({
 
 mockNuxtImport(useRuntimeConfig, () => mockUseRuntimeConfig);
 
+vi.mock("#shared/http", () => ({
+    HttpClient: vi.fn().mockImplementation(() => ({
+        get: vi.fn(),
+        post: vi.fn(),
+    })),
+    api: {},
+}));
+
 describe("useGroupStore", () => {
     beforeEach(() => {
         setActivePinia(createPinia());

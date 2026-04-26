@@ -12,6 +12,14 @@ const { route, push, navigateTo } = vi.hoisted(() => {
     };
 });
 
+vi.mock("#shared/http", () => ({
+    HttpClient: vi.fn().mockImplementation(() => ({
+        get: vi.fn(),
+        post: vi.fn(),
+    })),
+    api: {},
+}));
+
 mockNuxtImport("useRoute", () => () => route);
 mockNuxtImport("useRouter", () => () => ({ push }));
 mockNuxtImport("navigateTo", () => navigateTo);
