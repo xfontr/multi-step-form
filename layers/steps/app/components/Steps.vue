@@ -46,12 +46,14 @@ function onSubmit<T extends keyof Store>(key: T, value: unknown) {
             :key
         >
             <Card>
-                <component
-                    :is
-                    :name="key as string"
-                    :initial-value="store[key]"
-                    @submit="(value: unknown) => onSubmit(key, value)"
-                />
+                <ClientOnly>
+                    <component
+                        :is
+                        :name="key as string"
+                        :initial-value="store[key]"
+                        @submit="(value: unknown) => onSubmit(key, value)"
+                    />
+                </ClientOnly>
             </Card>
         </template>
 

@@ -40,7 +40,6 @@ const useUsageStore = defineStore(
 
             maxStep.value ??=
                 total - (groupStore.group!.stepsSkip?.length ?? 0);
-
             if (usage.id) return;
 
             setInitialValues();

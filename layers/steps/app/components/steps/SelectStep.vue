@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { Props } from "../../types/StepProps";
 import { Select, useI18nArray } from "@multi-step-form/ui";
-import Steps from "../Step.vue";
+import Step from "../Step.vue";
 
 withDefaults(defineProps<Props>(), {
     initialValue: "",
@@ -13,7 +13,7 @@ const { tm } = useI18nArray(useRuntimeConfig().public.env === "production");
 </script>
 
 <template>
-    <Steps
+    <Step
         :name
         :initial-value
         @submit="(v) => emit('submit', v)"
@@ -27,5 +27,5 @@ const { tm } = useI18nArray(useRuntimeConfig().public.env === "production");
                 {{ $t(`step.${name}.label`) }}
             </Select>
         </template>
-    </Steps>
+    </Step>
 </template>

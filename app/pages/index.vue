@@ -7,7 +7,6 @@ import useStepsStore from "#layers/steps/app/stores/steps";
 
 const { diet } = useDietStore();
 const flow = useStepsStore();
-
 const usage = useUsageStore();
 
 function onSubmit(breed: string): void {
@@ -35,11 +34,17 @@ onMounted(() => {
             </Header>
 
             <Card class="hero__cta">
-                <SelectStep
-                    :initial-value="diet.breed"
-                    name="breed"
-                    @submit="onSubmit"
-                />
+                <!--
+                This prevents hydration mismatches when navigating back: the server will be undefined, but
+                the client will be populated by the persisted store. It's not an ideal workaround.
+                 -->
+                <ClientOnly>
+                    <SelectStep
+                        :initial-value="diet.breed ? diet.breed : undefined"
+                        name="breed"
+                        @submit="onSubmit"
+                    />
+                </ClientOnly>
             </Card>
         </div>
     </Section>

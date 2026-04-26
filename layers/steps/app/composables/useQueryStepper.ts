@@ -63,7 +63,7 @@ function useQueryStepper(steps: Ref<string[]>, initialSteps: number) {
         if (!success) trySetFlowStep(current);
     });
 
-    if (!stepsStore.index) navigateTo("/");
+    if (!stepsStore.index && import.meta.client) navigateTo("/");
 
     return {
         previous,
