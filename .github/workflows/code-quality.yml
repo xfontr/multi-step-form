@@ -12,10 +12,15 @@ jobs:
             - name: Git checkout
               uses: actions/checkout@v3
 
-            - uses: pnpm/action-setup@v4
-              name: Install pnpm
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
               with:
                   run_install: true
+
+            - name: Install node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "20"
 
             - name: Testing
               run: pnpm test
