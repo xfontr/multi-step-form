@@ -6,6 +6,8 @@ import useUsageStore from "../stores/usage";
 
 const mockGroupInit = vi.fn();
 
+const TOTAL_STEPS = 7;
+
 vi.mock("../stores/group", () => ({
     default: () => ({
         group: { name: "TEST_GROUP", rate: 100 },
@@ -38,7 +40,7 @@ describe("useUsageStore", () => {
 
         expect(mockGroupInit).toHaveBeenCalledTimes(0);
 
-        store.init();
+        store.init(TOTAL_STEPS);
 
         const { usage } = store;
 
@@ -48,7 +50,7 @@ describe("useUsageStore", () => {
         expect(usage.success).toBe(false);
         expect(mockGroupInit).toHaveBeenCalledTimes(1);
 
-        store.init();
+        store.init(TOTAL_STEPS);
 
         expect(mockGroupInit).toHaveBeenCalledTimes(2);
     });
@@ -56,7 +58,7 @@ describe("useUsageStore", () => {
     it("updates step and completion correctly", () => {
         const store = useUsageStore();
 
-        store.init();
+        store.init(TOTAL_STEPS);
         store.updateStep(2);
 
         const { usage } = store;
@@ -68,7 +70,7 @@ describe("useUsageStore", () => {
     it("marks success when completion reaches max", () => {
         const store = useUsageStore();
 
-        store.init();
+        store.init(TOTAL_STEPS);
         store.updateStep(MAX_COMPLETION);
 
         const { usage } = store;
@@ -82,7 +84,7 @@ describe("useUsageStore", () => {
 
         vi.setSystemTime(1000);
 
-        store.init();
+        store.init(TOTAL_STEPS);
 
         const { init } = store.usage.timestamps;
 

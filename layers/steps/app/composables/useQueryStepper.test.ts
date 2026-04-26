@@ -64,7 +64,7 @@ describe("useQueryStepper composable", () => {
     });
 
     function setup(steps = ["a", "b", "c"]) {
-        return useQueryStepper(ref(steps));
+        return useQueryStepper(ref(steps), 1);
     }
 
     it("next updates query and store", () => {

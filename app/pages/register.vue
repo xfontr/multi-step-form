@@ -6,6 +6,7 @@ import useDiet from "#layers/diet/app/composables/useDiet";
 import useDietStore from "#layers/diet/app/stores/diet";
 import Steps from "#layers/steps/app/components/Steps.vue";
 import useStepsStore from "#layers/steps/app/stores/steps";
+import { FLOW_INITIAL_STEPS } from "~/configs/constants";
 import stepNodes from "~/steps";
 
 const { tm } = useI18nArray(useRuntimeConfig().public.env === "production");
@@ -21,7 +22,10 @@ const { nodes, stepNames } = useStepNodes(
     stepNodes,
 );
 
-const { previous, next, index } = useQueryStepper(stepNames);
+const { previous, next, index } = useQueryStepper(
+    stepNames,
+    FLOW_INITIAL_STEPS,
+);
 
 const { signUp, status } = useDiet();
 
