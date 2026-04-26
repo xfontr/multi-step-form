@@ -19,5 +19,6 @@ export default antfu({
         "style/indent": "off",
         "vue/html-indent": "off",
         "vue/operator-linebreak": "off",
+        "style/brace-style": "off",
     },
 });
