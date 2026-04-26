@@ -1,6 +1,5 @@
 import type { ApiResponse } from "#shared/types/ApiResponse";
 import type { Usage } from "#shared/types/Usage";
-import { FLOW_TOTAL_STEPS } from "#layers/steps/app/configs/constants";
 import repository from "../analytics.repository";
 import { MAX_COMPLETION } from "../configs/constants";
 import useGroupStore from "./group";
@@ -36,11 +35,11 @@ const useUsageStore = defineStore(
             usage.stepsSkipped = groupStore.group!.stepsSkip?.length ?? 0;
         }
 
-        function init(): void {
+        function init(total: number): void {
             groupStore.init();
 
             maxStep.value ??=
-                FLOW_TOTAL_STEPS - (groupStore.group!.stepsSkip?.length ?? 0);
+                total - (groupStore.group!.stepsSkip?.length ?? 0);
 
             if (usage.id) return;
 

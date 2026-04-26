@@ -155,8 +155,12 @@ $ pnpm preview
 # Run tests, lint and storybook
 
 $ pnpm test && pnpm lint
-$ pnpm test:e2e
 $ pnpm storybook
+
+# Run e2e tests
+
+$ pnpm dev # Terminal A
+$ pnpm test:e2e # Terminal B
 ```
 
 ### Containerization
