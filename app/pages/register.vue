@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Header, Status } from "@multi-step-form/ui";
+import Steps from "#layers/steps/app/components/Steps.vue";
 import useRegisterController from "~/composables/useRegisterController";
 
 const { index, nodes, onPrevious, onSubmit, onEnd, status, store } =
