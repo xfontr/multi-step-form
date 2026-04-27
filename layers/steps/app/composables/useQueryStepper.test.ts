@@ -94,7 +94,7 @@ describe("useQueryStepper composable", () => {
     it("redirects if no store index", () => {
         storeIndex = 0;
 
-        setup();
+        setup().init();
 
         expect(navigateTo).toHaveBeenCalledWith("/");
     });
