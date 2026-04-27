@@ -46,6 +46,11 @@ function onSubmit<T extends keyof Store>(key: T, value: unknown) {
             :key
         >
             <Card>
+                <!--
+                This could (arguably?) be considered domain leakage and therefore
+                a bad practice for a DDD-oriented architecture. The alternatives,
+                however, are not much better.
+                 -->
                 <ClientOnly>
                     <component
                         :is

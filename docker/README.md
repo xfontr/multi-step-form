@@ -12,6 +12,7 @@ Use `$ make build` or `$ make run` to run specific steps of the build process. `
 
 ```bash
 $ make init
+# http://127.0.0.1:8080/
 ```
 
 ### Scripts

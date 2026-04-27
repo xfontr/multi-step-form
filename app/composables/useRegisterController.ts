@@ -21,10 +21,12 @@ function useRegisterController() {
         stepNodes,
     );
 
-    const { previous, next, index } = useQueryStepper(
+    const { previous, next, index, init } = useQueryStepper(
         stepNames,
         FLOW_INITIAL_STEPS,
     );
+
+    init();
 
     const { signUp, status } = useDiet();
 

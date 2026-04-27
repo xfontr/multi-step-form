@@ -56,6 +56,10 @@ function useQueryStepper(steps: Ref<string[]>, initialSteps: number) {
         updateQuery(current);
     }
 
+    function init(): void {
+        if (!stepsStore.index) navigateTo("/");
+    }
+
     onMounted(() => {
         const current = stepsStore.index - initialSteps;
 
@@ -63,11 +67,10 @@ function useQueryStepper(steps: Ref<string[]>, initialSteps: number) {
         if (!success) trySetFlowStep(current);
     });
 
-    if (!stepsStore.index && import.meta.client) navigateTo("/");
-
     return {
         previous,
         next,
+        init,
         index: readonly(index),
     };
 }
