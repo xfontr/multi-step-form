@@ -26,7 +26,7 @@ function useRegisterController() {
         FLOW_INITIAL_STEPS,
     );
 
-    init();
+    if (import.meta.client) init();
 
     const { signUp, status } = useDiet();
 

@@ -3,7 +3,7 @@ import type { Props } from "../../types/StepProps";
 import { Select, useI18nArray } from "@multi-step-form/ui";
 import Step from "../Step.vue";
 
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props<string>>(), {
     initialValue: "",
 });
 
