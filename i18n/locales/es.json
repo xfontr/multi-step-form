@@ -75,6 +75,10 @@
         "continue": "Continuar",
         "restart": "Empezar de nuevo",
         "yes": "Sí",
-        "no": "No"
+        "no": "No",
+        "error": {
+            "generic": "Oops! Algo ha ido mal",
+            "back": "Volver a la página de inicio"
+        }
     }
 }

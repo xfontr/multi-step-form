@@ -10,10 +10,12 @@ const props = withDefaults(defineProps<Props>(), { index: 0 });
 
 const emit = defineEmits<{ update: [string] }>();
 
+const BACK_NAME = "back";
+
 const slots = useSlots();
 
 const slotKeys = computed<string[]>(() =>
-    Object.keys(slots).filter((key) => key !== "back"),
+    Object.keys(slots).filter((key) => key !== BACK_NAME),
 );
 
 const value = computed<string>(() => (props.index + 1).toString());
@@ -42,7 +44,7 @@ function onUpdateValue(value: string): void {
                     <slot :name />
                     <slot
                         v-if="index"
-                        name="back"
+                        :name="BACK_NAME"
                     />
                 </article>
             </StepPanel>

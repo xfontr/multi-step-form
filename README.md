@@ -12,6 +12,14 @@
 
 ---
 
+**TL;DR: Quick start**
+
+Just run `$ pnpm dev`! For tests, use the `$ pnpm test` script. For the e2e tests, do `$ pnpm test:e2e`, which requires another terminal with the server running. You can run the storybook with `$ pnpm storybook`.
+
+Docker? Run `$ cd docker && make init`. Analytics? Check the server terminal for the live logs.
+
+---
+
 ## 🧭 [1] Summary
 
 A quick guide to understand the structure of this project and how everything is organized.
@@ -174,6 +182,7 @@ $ pnpm test:e2e # Terminal B
 ```bash
 $ cd docker
 $ make init
+# http://127.0.0.1:8080/
 ```
 
 ---

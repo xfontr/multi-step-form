@@ -75,6 +75,10 @@
         "continue": "Continue",
         "restart": "Restart",
         "yes": "Yes",
-        "no": "No"
+        "no": "No",
+        "error": {
+            "generic": "Oops! Something went wrong",
+            "back": "Go back home"
+        }
     }
 }
