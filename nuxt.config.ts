@@ -74,10 +74,14 @@ export default defineNuxtConfig({
             },
         },
         ssr: {
-            noExternal: ["@multi-step-form/ui"],
+            noExternal: ["@multi-step-form/ui", "@multi-step-form/steps"],
         },
         optimizeDeps: {
-            include: ["@multi-step-form/ui", "@vueuse/core"],
+            include: [
+                "@multi-step-form/ui",
+                "@multi-step-form/steps",
+                "@vueuse/core",
+            ],
         },
     },
 });

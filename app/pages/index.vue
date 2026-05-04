@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Card, Header, Section } from "@multi-step-form/ui";
-import SelectStep from "#layers/steps/app/components/steps/SelectStep.vue";
+import SelectStep from "~~/packages/steps/app/components/steps/SelectStep.vue";
 import useLandingController from "~/composables/useLandingController";
 
 const { onSubmit, initialValue } = useLandingController();

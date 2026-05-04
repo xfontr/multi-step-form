@@ -1,6 +1,6 @@
+import { useStepsStore } from "@multi-step-form/steps";
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import useDietStore from "#layers/diet/app/stores/diet";
-import useStepsStore from "#layers/steps/app/stores/steps";
 
 function useLandingController() {
     const { diet } = useDietStore();

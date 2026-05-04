@@ -1,11 +1,15 @@
+import {
+    useQueryStepper,
+    useStepNodes,
+    useStepsStore,
+} from "@multi-step-form/steps";
 import { useI18nArray } from "@multi-step-form/ui";
 import useGroupStore from "#layers/analytics/app/stores/group";
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import useDiet from "#layers/diet/app/composables/useDiet";
 import useDietStore from "#layers/diet/app/stores/diet";
-import useStepsStore from "#layers/steps/app/stores/steps";
 import { FLOW_INITIAL_STEPS } from "~/configs/constants";
-import stepNodes from "~/steps";
+import stepNodes from "~/dietStepNodes";
 
 function useRegisterController() {
     const { tm } = useI18nArray(useRuntimeConfig().public.env === "production");

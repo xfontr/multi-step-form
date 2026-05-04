@@ -1,6 +1,6 @@
 import useUsageStore from "#layers/analytics/app/stores/usage";
 import { FLOW_INITIAL_STEPS } from "~/configs/constants";
-import steps from "~/steps";
+import steps from "~/dietStepNodes";
 
 export default defineNuxtPlugin(({ hooks }) => {
     const usage = useUsageStore();

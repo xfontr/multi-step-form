@@ -1,0 +1,5 @@
+# Improvements
+
+1. The steps module is completely agnostic. You can use it for any kind of multi step form. Therefore, it should've been a shared/ package, not a domain. It can't really be considered a business domain.
+2. If steps is a shared/ package, then it becomes somewhat hard to point out a specific subdomain/bounded context. Instead, we should probably talk about orchestrators/flows, which belong in the application layer (app/). Then, instead of creating a new subdomain, we'd simply orchestrate the logic from the app itself.
+3. Hexagonal architecture can be implemented far better. We could add an infraestructure/ folder at the root, which would contain the adapters. Ports would be defined in each subdomain. Example: diet would have a DietService port. Then, we'd use dependency injection to consume the adapter. Therefore, the subdomain never needs to care or worry about how to connect with the external world. The application layer will make sure to inject the right http provider for the subdomain.
